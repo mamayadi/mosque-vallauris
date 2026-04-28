@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=Nunito:wght@300;400;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ──────────────────────────────────────────────
+   Islamic 8-pointed star repeating pattern
+   (outer r=28, inner r=16, tile=80x80)
+   ────────────────────────────────────────────── */
+:root {
+  --star-beige: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Cpolygon points='40,12 46.1,25.2 59.8,20.2 54.8,33.9 68,40 54.8,46.1 59.8,59.8 46.1,54.8 40,68 33.9,54.8 20.2,59.8 25.2,46.1 12,40 25.2,33.9 20.2,20.2 33.9,25.2' fill='none' stroke='%232d6a4f' stroke-width='0.6' opacity='0.18'/%3E%3C/svg%3E");
+  --star-dark:  url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Cpolygon points='40,12 46.1,25.2 59.8,20.2 54.8,33.9 68,40 54.8,46.1 59.8,59.8 46.1,54.8 40,68 33.9,54.8 20.2,59.8 25.2,46.1 12,40 25.2,33.9 20.2,20.2 33.9,25.2' fill='none' stroke='%23c9a84c' stroke-width='0.6' opacity='0.18'/%3E%3C/svg%3E");
+}
+
+@layer base {
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Nunito', sans-serif; background-color: #fdf6ec; }
+  h1, h2, h3, h4 { font-family: 'Amiri', serif; }
+}
+
+@layer components {
+  /* Section backgrounds */
+  .bg-pattern-beige {
+    background-color: #fdf6ec;
+    background-image: var(--star-beige);
+  }
+  .bg-pattern-dark {
+    background-color: #1a472a;
+    background-image: var(--star-dark);
+  }
+
+  /* Gold ornamental heading underline */
+  .heading-ornament {
+    @apply text-center mb-2;
+    font-family: 'Amiri', serif;
+  }
+  .heading-ornament::after {
+    content: '❖';
+    display: block;
+    color: #c9a84c;
+    font-size: 1.25rem;
+    margin-top: 0.4rem;
+    letter-spacing: 0.5rem;
+  }
+
+  /* Arabesque top border on cards */
+  .card-arabesque {
+    @apply rounded-xl shadow-lg overflow-hidden;
+    border: 1px solid rgba(201, 168, 76, 0.35);
+  }
+
+  /* Gold call-to-action button */
+  .btn-gold {
+    @apply inline-flex items-center gap-3 px-8 py-4 rounded-full font-bold text-lg transition-all duration-300;
+    background: linear-gradient(135deg, #c9a84c 0%, #e8c96a 50%, #c9a84c 100%);
+    color: #1a472a;
+    box-shadow: 0 4px 24px rgba(201, 168, 76, 0.45);
+  }
+  .btn-gold:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 32px rgba(201, 168, 76, 0.65);
+  }
+
+  /* Ghost button (outlined) */
+  .btn-outline {
+    @apply inline-flex items-center gap-2 px-6 py-3 rounded-full font-semibold text-base transition-all duration-300;
+    border: 2px solid #c9a84c;
+    color: #c9a84c;
+  }
+  .btn-outline:hover {
+    background-color: rgba(201, 168, 76, 0.15);
+  }
+
+  /* Divider with crescent ornament */
+  .divider-gold {
+    @apply flex items-center gap-4 my-6;
+  }
+  .divider-gold::before,
+  .divider-gold::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, #c9a84c, transparent);
+  }
+
+  /* Info row in the about section */
+  .info-row {
+    @apply flex items-start gap-3 text-beige-200;
+  }
+  .info-row svg {
+    @apply flex-shrink-0 mt-0.5 text-gold;
+  }
+}
