@@ -4,7 +4,7 @@ WORKDIR /app
 
 # Install dependencies first (layer cache)
 COPY package*.json ./
-RUN npm install
+RUN npm install --include=optional
 
 # Copy source (dev mode uses volume mount, so this is mainly for build)
 COPY . .
