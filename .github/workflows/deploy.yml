@@ -25,7 +25,9 @@ jobs:
           node-version: "22"
 
       - name: Install dependencies
-        run: npm install --include=optional
+        run: |
+          rm -f package-lock.json
+          npm install --include=optional
 
       - name: Build site
         run: npm run build
