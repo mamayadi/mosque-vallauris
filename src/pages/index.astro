@@ -1,8 +1,9 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
 
-const mawaqitUrl   = 'https://mawaqit.net/fr/m/mosquee-de-vallauris-vallauris-06220-france';
-const helloAssoUrl = 'https://www.helloasso.com/associations/association-culturelle-de-vallauris';
+const mawaqitUrl    = 'https://mawaqit.net/fr/m/mosquee-de-vallauris-vallauris-06220-france';
+const helloAssoUrl  = 'https://www.helloasso.com/associations/association-culturelle-de-vallauris';
 const googleMapsUrl = 'https://maps.app.goo.gl/iCYVHbP1aZfZmQH88';
 const address       = '11bis Bd des Deux Vallons, 06220 Vallauris';
 ---
@@ -19,7 +20,6 @@ const address       = '11bis Bd des Deux Vallons, 06220 Vallauris';
       <!-- Logo -->
       <a href="#accueil" class="flex items-center gap-2 text-beige-100 hover:text-gold transition-colors">
         <svg viewBox="0 0 48 32" fill="currentColor" class="w-10 h-7">
-          <!-- Mini mosque logo -->
           <rect x="4" y="19" width="40" height="12" rx="1"/>
           <path d="M8,19 Q24,5 40,19Z"/>
           <path d="M0,19 Q8,13 16,19Z"/>
@@ -38,20 +38,23 @@ const address       = '11bis Bd des Deux Vallons, 06220 Vallauris';
       <ul class="flex items-center gap-1 sm:gap-4 text-beige-200 text-sm font-semibold">
         <li>
           <a href="#prieres"
-             class="px-3 py-2 rounded-lg hover:bg-white/10 hover:text-gold transition-all">
-            🕌 Prières
+             class="flex items-center gap-1.5 px-3 py-2 rounded-lg hover:bg-white/10 hover:text-gold transition-all">
+            <Icon name="ph:mosque" class="w-4 h-4" />
+            Prières
           </a>
         </li>
         <li>
           <a href="#localisation"
-             class="px-3 py-2 rounded-lg hover:bg-white/10 hover:text-gold transition-all">
-            📍 Plan
+             class="flex items-center gap-1.5 px-3 py-2 rounded-lg hover:bg-white/10 hover:text-gold transition-all">
+            <Icon name="ph:map-pin" class="w-4 h-4" />
+            Plan
           </a>
         </li>
         <li>
           <a href="#don"
-             class="px-3 py-2 rounded-full bg-gold text-green-800 hover:bg-gold-light transition-all font-bold">
-            💛 Don
+             class="flex items-center gap-1.5 px-3 py-2 rounded-full bg-gold text-green-800 hover:bg-gold-light transition-all font-bold">
+            <Icon name="ph:hand-heart" class="w-4 h-4" />
+            Don
           </a>
         </li>
       </ul>
@@ -65,7 +68,6 @@ const address       = '11bis Bd des Deux Vallons, 06220 Vallauris';
            class="relative min-h-screen flex flex-col items-center justify-center text-center
                   bg-pattern-dark overflow-hidden pt-16">
 
-    <!-- Background glow -->
     <div class="absolute inset-0 bg-radial-glow pointer-events-none"></div>
     <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-gold to-transparent"></div>
 
@@ -73,45 +75,28 @@ const address       = '11bis Bd des Deux Vallons, 06220 Vallauris';
     <div class="relative z-10 w-full max-w-lg mx-auto px-4 mb-6 text-beige-100 opacity-90">
       <svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg"
            fill="currentColor" class="w-full drop-shadow-2xl">
-        <!-- Far left minaret -->
         <rect x="8"   y="65"  width="22" height="150" rx="2"/>
         <path d="M8,65 L19,28 L30,65Z"/>
         <rect x="12"  y="60"  width="14" height="8" rx="1"/>
         <circle cx="19" cy="24" r="5"/>
-        <!-- Near left minaret -->
         <rect x="78"  y="105" width="18" height="110" rx="2"/>
         <path d="M78,105 L87,78 L96,105Z"/>
         <circle cx="87" cy="74" r="4"/>
-        <!-- Near right minaret -->
         <rect x="304" y="105" width="18" height="110" rx="2"/>
         <path d="M304,105 L313,78 L322,105Z"/>
         <circle cx="313" cy="74" r="4"/>
-        <!-- Far right minaret -->
         <rect x="370" y="65"  width="22" height="150" rx="2"/>
         <path d="M370,65 L381,28 L392,65Z"/>
         <rect x="374" y="60"  width="14" height="8" rx="1"/>
         <circle cx="381" cy="24" r="5"/>
-        <!-- Building base -->
         <rect x="60"  y="148" width="280" height="67" rx="3"/>
-        <!-- Left side dome -->
         <path d="M60,148 Q115,112 170,148Z"/>
-        <!-- Main central dome -->
         <path d="M120,148 Q200,68 280,148Z"/>
-        <!-- Right side dome -->
         <path d="M230,148 Q285,112 340,148Z"/>
-        <!-- Door arch -->
-        <path d="M178,215 L178,178 Q200,162 222,178 L222,215Z"
-              fill="rgba(10,30,18,0.45)"/>
-        <!-- Windows -->
-        <path d="M100,178 Q120,162 140,178 L140,200 L100,200Z"
-              fill="rgba(10,30,18,0.35)"/>
-        <path d="M260,178 Q280,162 300,178 L300,200 L260,200Z"
-              fill="rgba(10,30,18,0.35)"/>
-        <!-- Crescent & star atop main dome spire -->
-        <!-- Crescent -->
-        <path d="M196,88 C189,77 192,64 201,61 C193,65 190,77 196,88Z"
-              fill="#c9a84c"/>
-        <!-- Small star -->
+        <path d="M178,215 L178,178 Q200,162 222,178 L222,215Z" fill="rgba(10,30,18,0.45)"/>
+        <path d="M100,178 Q120,162 140,178 L140,200 L100,200Z"  fill="rgba(10,30,18,0.35)"/>
+        <path d="M260,178 Q280,162 300,178 L300,200 L260,200Z"  fill="rgba(10,30,18,0.35)"/>
+        <path d="M196,88 C189,77 192,64 201,61 C193,65 190,77 196,88Z" fill="#c9a84c"/>
         <polygon
           points="208,57 209.5,61.5 214,61.5 210.5,64 211.8,68.5 208,66 204.2,68.5 205.5,64 202,61.5 206.5,61.5"
           fill="#c9a84c" transform="scale(0.65) translate(112,26)"/>
@@ -132,17 +117,19 @@ const address       = '11bis Bd des Deux Vallons, 06220 Vallauris';
       </p>
       <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
         <a href="#prieres" class="btn-gold">
-          🕌 Horaires des prières
+          <Icon name="ph:mosque" class="w-6 h-6" />
+          Horaires des prières
         </a>
         <a href="#don" class="btn-outline">
-          💛 Faire un don
+          <Icon name="ph:hand-heart" class="w-5 h-5" />
+          Faire un don
         </a>
       </div>
     </div>
 
     <!-- Scroll hint -->
-    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 text-gold/60 animate-bounce text-2xl z-10">
-      ↓
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 text-gold/60 animate-bounce z-10">
+      <Icon name="ph:caret-circle-down" class="w-8 h-8" />
     </div>
   </section>
 
@@ -151,8 +138,6 @@ const address       = '11bis Bd des Deux Vallons, 06220 Vallauris';
   ══════════════════════════════════════════ -->
   <section id="prieres" class="py-20 bg-pattern-beige">
     <div class="max-w-4xl mx-auto px-4">
-
-      <!-- Heading -->
       <h2 class="heading-ornament text-4xl sm:text-5xl text-green-800 mb-2">
         Horaires des Prières
       </h2>
@@ -164,7 +149,6 @@ const address       = '11bis Bd des Deux Vallons, 06220 Vallauris';
         </a>
       </p>
 
-      <!-- Mawaqit embed -->
       <div class="card-arabesque bg-white shadow-xl overflow-hidden">
         <div class="relative w-full" style="padding-top: 65%;">
           <iframe
@@ -177,10 +161,11 @@ const address       = '11bis Bd des Deux Vallons, 06220 Vallauris';
         </div>
       </div>
 
-      <!-- Fallback link -->
       <div class="mt-6 text-center">
-        <a href={mawaqitUrl} target="_blank" rel="noopener" class="btn-outline text-green-700 border-green-600">
-          Voir les horaires sur Mawaqit →
+        <a href={mawaqitUrl} target="_blank" rel="noopener"
+           class="btn-outline text-green-700 border-green-600 inline-flex items-center gap-2">
+          Voir les horaires sur Mawaqit
+          <Icon name="ph:arrow-square-out" class="w-4 h-4" />
         </a>
       </div>
     </div>
@@ -199,32 +184,35 @@ const address       = '11bis Bd des Deux Vallons, 06220 Vallauris';
         <!-- Adresse -->
         <div class="card-arabesque bg-green-800/60 p-6 text-beige-200">
           <h3 class="font-amiri text-2xl text-gold mb-4 flex items-center gap-2">
-            <span>📍</span> Adresse
+            <Icon name="ph:map-pin-fill" class="w-6 h-6" />
+            Adresse
           </h3>
           <p class="text-lg leading-relaxed">{address}</p>
           <p class="mt-1 text-beige-400">Vallauris, Alpes-Maritimes (06)</p>
           <a href={googleMapsUrl} target="_blank" rel="noopener"
              class="mt-4 inline-flex items-center gap-2 text-gold hover:text-gold-light underline text-sm">
-            Ouvrir dans Google Maps →
+            Ouvrir dans Google Maps
+            <Icon name="ph:arrow-square-out" class="w-3.5 h-3.5" />
           </a>
         </div>
 
-        <!-- Jours & horaires généraux -->
+        <!-- Accès -->
         <div class="card-arabesque bg-green-800/60 p-6 text-beige-200">
           <h3 class="font-amiri text-2xl text-gold mb-4 flex items-center gap-2">
-            <span>🕐</span> Accès
+            <Icon name="ph:clock-fill" class="w-6 h-6" />
+            Accès
           </h3>
-          <ul class="space-y-2 text-base leading-relaxed">
+          <ul class="space-y-3 text-base leading-relaxed">
             <li class="flex items-start gap-2">
-              <span class="text-gold mt-0.5">✦</span>
+              <Icon name="ph:check-circle" class="w-5 h-5 text-gold shrink-0 mt-0.5" />
               Ouverte tous les jours pour les cinq prières
             </li>
             <li class="flex items-start gap-2">
-              <span class="text-gold mt-0.5">✦</span>
+              <Icon name="ph:check-circle" class="w-5 h-5 text-gold shrink-0 mt-0.5" />
               Prière du vendredi (Jumu'ah) — suivez les horaires sur Mawaqit
             </li>
             <li class="flex items-start gap-2">
-              <span class="text-gold mt-0.5">✦</span>
+              <Icon name="ph:check-circle" class="w-5 h-5 text-gold shrink-0 mt-0.5" />
               Ablutions disponibles sur place
             </li>
           </ul>
@@ -241,11 +229,8 @@ const address       = '11bis Bd des Deux Vallons, 06220 Vallauris';
       <h2 class="heading-ornament text-4xl sm:text-5xl text-green-800 mb-2">
         Comment nous trouver
       </h2>
-      <p class="text-center text-green-700 mb-10 text-lg">
-        {address}
-      </p>
+      <p class="text-center text-green-700 mb-10 text-lg">{address}</p>
 
-      <!-- Google Maps embed -->
       <div class="card-arabesque overflow-hidden shadow-xl">
         <div class="relative w-full" style="padding-top: 56.25%;">
           <iframe
@@ -260,8 +245,10 @@ const address       = '11bis Bd des Deux Vallons, 06220 Vallauris';
       </div>
 
       <div class="mt-6 text-center">
-        <a href={googleMapsUrl} target="_blank" rel="noopener" class="btn-outline text-green-700 border-green-600">
-          Itinéraire via Google Maps →
+        <a href={googleMapsUrl} target="_blank" rel="noopener"
+           class="btn-outline text-green-700 border-green-600 inline-flex items-center gap-2">
+          <Icon name="ph:navigation-arrow" class="w-4 h-4" />
+          Itinéraire via Google Maps
         </a>
       </div>
     </div>
@@ -271,12 +258,14 @@ const address       = '11bis Bd des Deux Vallons, 06220 Vallauris';
        FAIRE UN DON
   ══════════════════════════════════════════ -->
   <section id="don" class="py-24 bg-pattern-dark relative overflow-hidden">
-
-    <!-- Decorative gold line top -->
     <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-gold to-transparent"></div>
 
     <div class="max-w-3xl mx-auto px-4 text-center">
-      <div class="text-5xl mb-4">💛</div>
+      <!-- Large decorative icon -->
+      <div class="flex justify-center mb-6">
+        <Icon name="ph:hand-heart-fill" class="w-20 h-20 text-gold opacity-90" />
+      </div>
+
       <h2 class="heading-ornament text-4xl sm:text-5xl text-beige-100 mb-6">
         Soutenez notre Mosquée
       </h2>
@@ -297,25 +286,23 @@ const address       = '11bis Bd des Deux Vallons, 06220 Vallauris';
         une aumône dont la récompense se perpétue.
       </p>
 
-      <!-- CTA button -->
       <a href={helloAssoUrl} target="_blank" rel="noopener" class="btn-gold text-xl px-10 py-5">
-        💛 Faire un don sur HelloAsso
+        <Icon name="ph:heart-fill" class="w-6 h-6" />
+        Faire un don sur HelloAsso
       </a>
 
       <p class="mt-6 text-beige-500 text-sm">
         Dons sécurisés via HelloAsso · Association culturelle de Vallauris
       </p>
 
-      <!-- Decorative Arabic text -->
       <div class="mt-12 font-amiri text-2xl text-gold/60 tracking-widest">
-        ﴿ وَمَا أَنفَقْتُم مِّن شَيْءٍ فَهُوَ يُخْلِفُهُ ﴾
+          ﴾ وَمَا أَنفَقْتُم مِّن شَيْءٍ فَهُوَ يُخْلِفُهُ ﴿
       </div>
       <p class="text-beige-500 text-xs mt-1">
         « Tout ce que vous dépensez, Il vous le remplace. » — Sourate Saba', 39
       </p>
     </div>
 
-    <!-- Decorative gold line bottom -->
     <div class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-gold to-transparent"></div>
   </section>
 
@@ -330,8 +317,9 @@ const address       = '11bis Bd des Deux Vallons, 06220 Vallauris';
           <h3 class="font-amiri text-xl text-beige-200 mb-3">La grande Mosquée de Vallauris</h3>
           <p class="text-sm leading-relaxed">{address}</p>
           <a href={googleMapsUrl} target="_blank" rel="noopener"
-             class="text-gold text-sm hover:text-gold-light transition-colors mt-2 inline-block">
-            Voir sur la carte →
+             class="inline-flex items-center gap-1.5 text-gold text-sm hover:text-gold-light transition-colors mt-2">
+            Voir sur la carte
+            <Icon name="ph:arrow-square-out" class="w-3.5 h-3.5" />
           </a>
         </div>
 
@@ -339,9 +327,24 @@ const address       = '11bis Bd des Deux Vallons, 06220 Vallauris';
         <div>
           <h3 class="font-amiri text-xl text-beige-200 mb-3">Liens rapides</h3>
           <ul class="space-y-2 text-sm">
-            <li><a href="#prieres"      class="hover:text-gold transition-colors">🕌 Horaires des prières</a></li>
-            <li><a href="#localisation" class="hover:text-gold transition-colors">📍 Localisation</a></li>
-            <li><a href="#don"          class="hover:text-gold transition-colors">💛 Faire un don</a></li>
+            <li>
+              <a href="#prieres" class="inline-flex items-center gap-2 hover:text-gold transition-colors">
+                <Icon name="ph:mosque" class="w-4 h-4" />
+                Horaires des prières
+              </a>
+            </li>
+            <li>
+              <a href="#localisation" class="inline-flex items-center gap-2 hover:text-gold transition-colors">
+                <Icon name="ph:map-pin" class="w-4 h-4" />
+                Localisation
+              </a>
+            </li>
+            <li>
+              <a href="#don" class="inline-flex items-center gap-2 hover:text-gold transition-colors">
+                <Icon name="ph:hand-heart" class="w-4 h-4" />
+                Faire un don
+              </a>
+            </li>
           </ul>
         </div>
 
@@ -351,17 +354,24 @@ const address       = '11bis Bd des Deux Vallons, 06220 Vallauris';
           <ul class="space-y-2 text-sm">
             <li>
               <a href={mawaqitUrl} target="_blank" rel="noopener"
-                 class="hover:text-gold transition-colors">Mawaqit — prières ↗</a>
+                 class="inline-flex items-center gap-2 hover:text-gold transition-colors">
+                <Icon name="ph:clock" class="w-4 h-4" />
+                Mawaqit — prières
+                <Icon name="ph:arrow-square-out" class="w-3 h-3 opacity-60" />
+              </a>
             </li>
             <li>
               <a href={helloAssoUrl} target="_blank" rel="noopener"
-                 class="hover:text-gold transition-colors">HelloAsso — dons ↗</a>
+                 class="inline-flex items-center gap-2 hover:text-gold transition-colors">
+                <Icon name="ph:heart" class="w-4 h-4" />
+                HelloAsso — dons
+                <Icon name="ph:arrow-square-out" class="w-3 h-3 opacity-60" />
+              </a>
             </li>
           </ul>
         </div>
       </div>
 
-      <!-- Bottom bar -->
       <div class="border-t border-green-800 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-beige-600">
         <p>© {new Date().getFullYear()} Association culturelle de Vallauris · Tous droits réservés</p>
         <p class="font-amiri text-base text-gold/60 tracking-widest">الله أكبر</p>
@@ -369,24 +379,16 @@ const address       = '11bis Bd des Deux Vallons, 06220 Vallauris';
     </div>
   </footer>
 
-  <!-- Smooth active-section nav highlight -->
   <style>
-    /* Radial glow on hero */
     .bg-radial-glow {
       background: radial-gradient(ellipse at 50% 60%, rgba(201,168,76,0.07) 0%, transparent 70%);
     }
   </style>
 
   <script>
-    // Shrink nav on scroll
     const nav = document.getElementById('navbar');
     window.addEventListener('scroll', () => {
-      if (window.scrollY > 80) {
-        nav?.classList.add('py-1');
-        nav?.classList.remove('py-3'); // no-op if already removed
-      } else {
-        nav?.classList.remove('py-1');
-      }
+      nav?.classList.toggle('py-1', window.scrollY > 80);
     }, { passive: true });
   </script>
 </Layout>
