@@ -6,7 +6,8 @@
     "dev": "astro dev --host 0.0.0.0",
     "build": "astro build",
     "preview": "astro preview --host 0.0.0.0",
-    "astro": "astro"
+    "astro": "astro",
+    "favicon": "node scripts/generate-favicons.mjs"
   },
   "overrides": {
     "vite": "^7"
@@ -14,7 +15,8 @@
   "optionalDependencies": {
     "@rollup/rollup-linux-x64-gnu": "*",
     "lightningcss-linux-x64-gnu": "*",
-    "@tailwindcss/oxide-linux-x64-gnu": "*"
+    "@tailwindcss/oxide-linux-x64-gnu": "*",
+    "@img/sharp-linux-x64": "*"
   },
   "dependencies": {
     "astro": "^6.0.5",
@@ -22,5 +24,8 @@
     "tailwindcss": "^4.0.0",
     "astro-icon": "^1.1.5",
     "@iconify-json/ph": "^1.2.2"
+  },
+  "devDependencies": {
+    "sharp": "^0.34.5"
   }
 }
