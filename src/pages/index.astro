@@ -6,6 +6,18 @@ const mawaqitUrl    = 'https://mawaqit.net/fr/m/mosquee-de-vallauris-vallauris-0
 const helloAssoUrl  = 'https://www.helloasso.com/associations/association-culturelle-de-vallauris';
 const googleMapsUrl = 'https://maps.app.goo.gl/iCYVHbP1aZfZmQH88';
 const address       = '11bis Bd des Deux Vallons, 06220 Vallauris';
+
+const services = [
+  { label: 'Espace pour femmes',  available: true,  icon: 'ph:gender-female'   },
+  { label: 'Salle d\'ablutions',  available: true,  icon: 'ph:drop'            },
+  { label: 'Cours pour adultes',  available: true,  icon: 'ph:books'           },
+  { label: 'Cours pour enfants',  available: true,  icon: 'ph:graduation-cap'  },
+  { label: 'Accès handicapés',    available: false, icon: 'ph:wheelchair'      },
+  { label: 'Salât al-Janaza',     available: false, icon: 'ph:mosque'          },
+  { label: 'Salat Al-Aïd',        available: true,  icon: 'ph:moon-stars'      },
+  { label: 'Iftar Ramadan',       available: true,  icon: 'ph:moon-stars'      },
+  { label: 'Parking',             available: false, icon: 'ph:car'             },
+];
 ---
 
 <Layout>
@@ -216,6 +228,29 @@ const address       = '11bis Bd des Deux Vallons, 06220 Vallauris';
               Ablutions disponibles sur place
             </li>
           </ul>
+        </div>
+      </div>
+
+      <!-- ── Installations & services ── -->
+      <div class="mt-10">
+        <h3 class="heading-ornament font-amiri text-2xl text-beige-100 mb-6">
+          Installations &amp; services
+        </h3>
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+          {services.map(({ label, available, icon }) => (
+            <div class={`card-arabesque flex items-center gap-3 px-4 py-3 ${available ? 'bg-green-800/60' : 'bg-green-900/40'}`}>
+              <Icon name={icon} class={`w-5 h-5 shrink-0 ${available ? 'text-gold' : 'text-beige-500'}`} />
+              <span class={`text-sm font-medium leading-tight ${available ? 'text-beige-200' : 'text-beige-500'}`}>
+                {label}
+              </span>
+              <span class="ml-auto shrink-0">
+                {available
+                  ? <Icon name="ph:check-circle-fill" class="w-4 h-4 text-gold" />
+                  : <Icon name="ph:x-circle"          class="w-4 h-4 text-beige-600" />
+                }
+              </span>
+            </div>
+          ))}
         </div>
       </div>
     </div>
