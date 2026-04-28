@@ -1,13 +1,13 @@
 import { defineConfig } from 'astro/config';
-import tailwind from '@astrojs/tailwind';
+import tailwindcss from '@tailwindcss/vite';
 
 // Update site + base to match your GitHub username and repo name
 // e.g. site: 'https://mon-username.github.io', base: '/mosque-vallauris'
 export default defineConfig({
-  integrations: [
-    tailwind({ applyBaseStyles: false }),
-  ],
+  vite: {
+    plugins: [tailwindcss()],
+  },
   output: 'static',
-  site: 'https://votre-username.github.io',
+  site: 'https://mamayadi.github.io',
   base: '/mosque-vallauris',
 });

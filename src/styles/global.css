@@ -1,8 +1,46 @@
 @import url('https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=Nunito:wght@300;400;600;700&display=swap');
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* Tailwind v4 — single import replaces the three @tailwind directives */
+@import "tailwindcss";
+
+/* ──────────────────────────────────────────────
+   Design tokens (CSS-first config for Tailwind v4)
+   ────────────────────────────────────────────── */
+@theme {
+  /* Override / extend the green palette */
+  --color-green-950: #0a1f12;
+  --color-green-900: #0d2e1a;
+  --color-green-800: #1a472a;
+  --color-green-700: #2d6a4f;
+  --color-green-600: #40916c;
+  --color-green-400: #74c69d;
+
+  /* Custom beige scale */
+  --color-beige-50:  #fffbf5;
+  --color-beige-100: #fdf6ec;
+  --color-beige-200: #f8f0e0;
+  --color-beige-300: #f0e4c8;
+  --color-beige-400: #e8d5b0;
+  --color-beige-500: #d4b896;
+  --color-beige-600: #c9a96e;
+
+  /* Gold accent */
+  --color-gold:       #c9a84c;
+  --color-gold-light: #e8c96a;
+  --color-gold-dark:  #a07c2a;
+
+  /* Typography */
+  --font-amiri:  'Amiri', serif;
+  --font-nunito: 'Nunito', sans-serif;
+
+  /* Custom animation */
+  --animate-fade-in: fadeIn 0.8s ease forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
 
 /* ──────────────────────────────────────────────
    Islamic 8-pointed star repeating pattern
@@ -13,14 +51,19 @@
   --star-dark:  url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Cpolygon points='40,12 46.1,25.2 59.8,20.2 54.8,33.9 68,40 54.8,46.1 59.8,59.8 46.1,54.8 40,68 33.9,54.8 20.2,59.8 25.2,46.1 12,40 25.2,33.9 20.2,20.2 33.9,25.2' fill='none' stroke='%23c9a84c' stroke-width='0.6' opacity='0.18'/%3E%3C/svg%3E");
 }
 
+/* ──────────────────────────────────────────────
+   Base overrides
+   ────────────────────────────────────────────── */
 @layer base {
   html { scroll-behavior: smooth; }
-  body { font-family: 'Nunito', sans-serif; background-color: #fdf6ec; }
-  h1, h2, h3, h4 { font-family: 'Amiri', serif; }
+  body { font-family: var(--font-nunito); background-color: #fdf6ec; }
+  h1, h2, h3, h4 { font-family: var(--font-amiri); }
 }
 
+/* ──────────────────────────────────────────────
+   Component styles
+   ────────────────────────────────────────────── */
 @layer components {
-  /* Section backgrounds */
   .bg-pattern-beige {
     background-color: #fdf6ec;
     background-image: var(--star-beige);
@@ -33,18 +76,18 @@
   /* Gold ornamental heading underline */
   .heading-ornament {
     @apply text-center mb-2;
-    font-family: 'Amiri', serif;
+    font-family: var(--font-amiri);
   }
   .heading-ornament::after {
     content: '❖';
     display: block;
-    color: #c9a84c;
+    color: var(--color-gold);
     font-size: 1.25rem;
     margin-top: 0.4rem;
     letter-spacing: 0.5rem;
   }
 
-  /* Arabesque top border on cards */
+  /* Arabesque card frame */
   .card-arabesque {
     @apply rounded-xl shadow-lg overflow-hidden;
     border: 1px solid rgba(201, 168, 76, 0.35);
@@ -62,17 +105,17 @@
     box-shadow: 0 8px 32px rgba(201, 168, 76, 0.65);
   }
 
-  /* Ghost button (outlined) */
+  /* Ghost / outlined button */
   .btn-outline {
     @apply inline-flex items-center gap-2 px-6 py-3 rounded-full font-semibold text-base transition-all duration-300;
-    border: 2px solid #c9a84c;
-    color: #c9a84c;
+    border: 2px solid var(--color-gold);
+    color: var(--color-gold);
   }
   .btn-outline:hover {
     background-color: rgba(201, 168, 76, 0.15);
   }
 
-  /* Divider with crescent ornament */
+  /* Gold divider with centred ornament text */
   .divider-gold {
     @apply flex items-center gap-4 my-6;
   }
@@ -81,14 +124,6 @@
     content: '';
     flex: 1;
     height: 1px;
-    background: linear-gradient(to right, transparent, #c9a84c, transparent);
-  }
-
-  /* Info row in the about section */
-  .info-row {
-    @apply flex items-start gap-3 text-beige-200;
-  }
-  .info-row svg {
-    @apply flex-shrink-0 mt-0.5 text-gold;
+    background: linear-gradient(to right, transparent, var(--color-gold), transparent);
   }
 }
