@@ -1,18 +1,55 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <rect width="32" height="32" rx="6" fill="#1a472a"/>
-  <!-- Mosque silhouette in gold -->
-  <g fill="#c9a84c">
-    <!-- Far left minaret -->
-    <rect x="1" y="9" width="4" height="22" rx="0.5"/>
-    <polygon points="1,9 3,4 5,9"/>
-    <!-- Far right minaret -->
-    <rect x="27" y="9" width="4" height="22" rx="0.5"/>
-    <polygon points="27,9 29,4 31,9"/>
-    <!-- Building base -->
-    <rect x="6" y="18" width="20" height="13" rx="1"/>
-    <!-- Main dome -->
-    <path d="M7,18 Q16,9 25,18Z"/>
-    <!-- Door -->
-    <path d="M13,31 L13,24 Q16,21 19,24 L19,31Z" fill="#1a472a"/>
-  </g>
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="#235c38"/>
+      <stop offset="100%" stop-color="#0d2e1a"/>
+    </linearGradient>
+    <style>
+      .gold      { fill: #c9a84c; }
+      .dark-gold { fill: #a07c2a; }
+      .outline   { stroke: #0d2e1a; stroke-width: 7; stroke-linejoin: round; stroke-linecap: round; }
+    </style>
+  </defs>
+
+  <!-- Background with site gradient -->
+  <rect width="512" height="512" rx="75" fill="url(#bg)"/>
+  <!-- Gold border ring -->
+  <rect width="512" height="512" rx="75" fill="none" stroke="#c9a84c" stroke-width="6" opacity="0.45"/>
+
+  <rect x="94" y="330" width="324" height="155" class="gold"/>
+
+  <path d="M 216 485 L 216 405 C 216 365, 235 345, 256 325 C 277 345, 296 365, 296 405 L 296 485 Z" class="dark-gold outline"/>
+
+  <path d="M 119 452 L 119 400 C 119 365, 135 350, 156 335 C 177 350, 193 365, 193 400 L 193 452 Z" class="dark-gold outline"/>
+  <path d="M 111 452 L 201 452 L 201 462 L 111 462 Z" class="gold outline"/>
+
+  <path d="M 319 452 L 319 400 C 319 365, 335 350, 356 335 C 377 350, 393 365, 393 400 L 393 452 Z" class="dark-gold outline"/>
+  <path d="M 311 452 L 401 452 L 401 462 L 311 462 Z" class="gold outline"/>
+
+  <rect x="116" y="290" width="280" height="28" rx="14" class="gold"/>
+
+  <path d="M 118 290 C 118 110, 394 110, 394 290 Z" class="gold"/>
+
+  <path d="M 248 145 L 264 145 L 260 100 L 252 100 Z" class="gold"/>
+  <rect x="242" y="140" width="28" height="6" rx="3" class="gold"/>
+
+  <path d="M 256 40 A 35 35 0 1 0 292 98 A 29 29 0 1 1 270 45 Z" class="gold"/>
+
+  <polygon points="275,70 282,73 281,81 287,76 294,81 292,73 299,70 291,70 289,62 286,70" class="gold"/>
+
+  <rect x="30" y="250" width="44" height="235" class="gold"/>
+  <polygon points="17,250 87,250 87,225 17,225" class="gold"/>
+  <rect x="21" y="240" width="62" height="10" class="gold" stroke="#0d2e1a" stroke-width="3"/>
+  <polygon points="34,225 40,85 64,85 70,225" class="gold"/>
+  <path d="M 38 85 C 38 55, 66 55, 66 85 Z" class="gold"/>
+  <line x1="52" y1="85" x2="52" y2="40" stroke="#c9a84c" stroke-width="3"/>
+  <polygon points="49,40 55,40 52,28" class="gold"/>
+
+  <rect x="438" y="250" width="44" height="235" class="gold"/>
+  <polygon points="425,250 495,250 495,225 425,225" class="gold"/>
+  <rect x="429" y="240" width="62" height="10" class="gold" stroke="#0d2e1a" stroke-width="3"/>
+  <polygon points="442,225 448,85 472,85 478,225" class="gold"/>
+  <path d="M 446 85 C 446 55, 474 55, 474 85 Z" class="gold"/>
+  <line x1="460" y1="85" x2="460" y2="40" stroke="#c9a84c" stroke-width="3"/>
+  <polygon points="457,40 463,40 460,28" class="gold"/>
 </svg>
