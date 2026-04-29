@@ -8,6 +8,8 @@ const publicDir = resolve(dirname(fileURLToPath(import.meta.url)), '../public');
 // Give the SVG explicit dimensions so sharp renders it at the right size
 const svgSource = Buffer.from(
   readFileSync(resolve(publicDir, 'favicon.svg'), 'utf8')
+    .replace(/(<svg\b[^>]*?)\s+width="[^"]*"/i, '$1')
+    .replace(/(<svg\b[^>]*?)\s+height="[^"]*"/i, '$1')
     .replace('<svg ', '<svg width="512" height="512" ')
 );
 
