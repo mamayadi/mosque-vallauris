@@ -1,5 +1,13 @@
 <svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+
+  <!-- ═══════════════════════════════════════════
+       PALETTE & SHARED STYLES
+       gold      : #c9a84c  (primary fill)
+       dark-gold : #a07c2a  (arched openings fill)
+       outline   : dark green stroke for depth
+  ═══════════════════════════════════════════ -->
   <defs>
+    <!-- Vertical dark-green gradient — matches the site's header/hero background -->
     <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%"   stop-color="#235c38"/>
       <stop offset="100%" stop-color="#0d2e1a"/>
@@ -11,45 +19,122 @@
     </style>
   </defs>
 
-  <!-- Background with site gradient -->
+  <!-- ═══════════════════════════════════════════
+       BACKGROUND
+       Rounded rectangle with the site gradient.
+       rx="75" gives a smooth icon corner at any size.
+  ═══════════════════════════════════════════ -->
   <rect width="512" height="512" rx="75" fill="url(#bg)"/>
-  <!-- Gold border ring -->
+  <!-- Subtle gold border ring — adds definition against light backgrounds -->
   <rect width="512" height="512" rx="75" fill="none" stroke="#c9a84c" stroke-width="6" opacity="0.45"/>
 
-  <rect x="94" y="330" width="324" height="155" class="gold"/>
+  <!-- ═══════════════════════════════════════════
+       BUILDING BASE
+       Solid gold rectangle behind all facade details.
+       Adjust y/height to raise or lower the building.
+  ═══════════════════════════════════════════ -->
+  <rect x="94" y="318" width="324" height="168" class="gold"/>
 
+  <!-- ═══════════════════════════════════════════
+       ARCHED OPENINGS
+       Three Islamic pointed arches: left window, centre
+       door (taller), right window. dark-gold fill + dark
+       outline for a carved-in look.
+       Sill bars sit at y=452 to cap the side windows.
+  ═══════════════════════════════════════════ -->
+  <!-- Centre door — tallest arch, runs to bottom edge -->
   <path d="M 216 485 L 216 405 C 216 365, 235 345, 256 325 C 277 345, 296 365, 296 405 L 296 485 Z" class="dark-gold outline"/>
 
+  <!-- Left window -->
   <path d="M 119 452 L 119 400 C 119 365, 135 350, 156 335 C 177 350, 193 365, 193 400 L 193 452 Z" class="dark-gold outline"/>
+  <!-- Left window sill bar -->
   <path d="M 111 452 L 201 452 L 201 462 L 111 462 Z" class="gold outline"/>
 
+  <!-- Right window -->
   <path d="M 319 452 L 319 400 C 319 365, 335 350, 356 335 C 377 350, 393 365, 393 400 L 393 452 Z" class="dark-gold outline"/>
+  <!-- Right window sill bar -->
   <path d="M 311 452 L 401 452 L 401 462 L 311 462 Z" class="gold outline"/>
 
-  <rect x="116" y="290" width="280" height="28" rx="14" class="gold"/>
+  <!-- ═══════════════════════════════════════════
+       DOME SPIRE
+       Tapered shaft + horizontal base ring that sits
+       atop the dome. Adjust y values to raise or lower.
+  ═══════════════════════════════════════════ -->
+  <!-- Tapered shaft -->
+  <path d="M 248 156 L 264 156 L 260 110 L 252 110 Z" class="gold"/>
+  <!-- Base ring -->
+  <!-- <rect x="242" y="152" width="28" height="6" rx="3" class="gold"/> -->
 
-  <path d="M 118 290 C 118 110, 394 110, 394 290 Z" class="gold"/>
+  <!-- ═══════════════════════════════════════════
+       MAIN DOME
+       Cubic-Bézier arch from x=118 to x=394 peaking
+       around y=110. Dome base band (rx=14) hides the
+       junction with the building base.
+  ═══════════════════════════════════════════ -->
+  <!-- Dome arch -->
+  <path d="M 118 302 C 118 110, 394 110, 394 302 Z" class="gold outline"/>
+  <!-- Dome base decorative band -->
+  <rect x="106" y="290" width="300" height="28" rx="14" class="gold outline"/>
 
-  <path d="M 248 145 L 264 145 L 260 100 L 252 100 Z" class="gold"/>
-  <rect x="242" y="140" width="28" height="6" rx="3" class="gold"/>
+  <!-- ═══════════════════════════════════════════
+       CRESCENT & STAR
+       Crescent: both arcs share the exact same two tip
+       points so Z closes cleanly with no straight-line notch.
+         outer arc  r=35  sweep=0 (CCW, convex left side)
+         inner arc  r=40  sweep=1 (CW,  concave right side)
+       The larger inner radius flattens the concave face and
+       opens the crescent toward the right where the star sits.
 
-  <path d="M 256 40 A 35 35 0 1 0 292 98 A 29 29 0 1 1 270 45 Z" class="gold"/>
+       Star: mathematically symmetric 5-pointed star.
+         center (287,72)  outer r=10  inner r=4
+         10 points alternating outer/inner from top (−90°),
+         stepping 72° per outer point with inner at +36° offset.
+  ═══════════════════════════════════════════ -->
+  <!-- Crescent moon — tips at (258,40) and (292,98), properly closed -->
+  <path d="M 258 40 A 35 35 0 1 0 292 98 A 40 40 0 1 1 258 40 Z" class="gold"/>
+  <!-- Five-pointed star — symmetric, center (287,72), outer r=10, inner r=4 -->
+  <polygon points="287,62 289,69 297,69 291,73 293,80 287,76 281,80 283,73 278,69 285,69" class="gold"/>
 
-  <polygon points="275,70 282,73 281,81 287,76 294,81 292,73 299,70 291,70 289,62 286,70" class="gold"/>
-
+  <!-- ═══════════════════════════════════════════
+       LEFT MINARET
+       Structure (bottom → top):
+         shaft   — tall gold rectangle
+         balcony — trapezoidal cap + accent stripe
+         tower   — tapered polygon
+         dome    — small Bézier cap
+         spire   — vertical line + arrowhead tip
+  ═══════════════════════════════════════════ -->
+  <!-- Minaret shaft -->
   <rect x="30" y="250" width="44" height="235" class="gold"/>
+  <!-- Balcony cap (trapezoid) -->
   <polygon points="17,250 87,250 87,225 17,225" class="gold"/>
+  <!-- Balcony accent stripe -->
   <rect x="21" y="240" width="62" height="10" class="gold" stroke="#0d2e1a" stroke-width="3"/>
+  <!-- Tapered tower -->
   <polygon points="34,225 40,85 64,85 70,225" class="gold"/>
+  <!-- Tower dome cap -->
   <path d="M 38 85 C 38 55, 66 55, 66 85 Z" class="gold"/>
+  <!-- Spire line + arrowhead tip -->
   <line x1="52" y1="85" x2="52" y2="40" stroke="#c9a84c" stroke-width="3"/>
   <polygon points="49,40 55,40 52,28" class="gold"/>
 
+  <!-- ═══════════════════════════════════════════
+       RIGHT MINARET  (mirror of left)
+       Shaft at x=438; balcony/tower/dome/spire
+       follow the same structure as the left.
+  ═══════════════════════════════════════════ -->
+  <!-- Minaret shaft -->
   <rect x="438" y="250" width="44" height="235" class="gold"/>
+  <!-- Balcony cap -->
   <polygon points="425,250 495,250 495,225 425,225" class="gold"/>
+  <!-- Balcony accent stripe -->
   <rect x="429" y="240" width="62" height="10" class="gold" stroke="#0d2e1a" stroke-width="3"/>
+  <!-- Tapered tower -->
   <polygon points="442,225 448,85 472,85 478,225" class="gold"/>
+  <!-- Tower dome cap -->
   <path d="M 446 85 C 446 55, 474 55, 474 85 Z" class="gold"/>
+  <!-- Spire line + arrowhead tip -->
   <line x1="460" y1="85" x2="460" y2="40" stroke="#c9a84c" stroke-width="3"/>
   <polygon points="457,40 463,40 460,28" class="gold"/>
+
 </svg>
