@@ -126,4 +126,14 @@
     height: 1px;
     background: linear-gradient(to right, transparent, var(--color-gold), transparent);
   }
+
+  /* Hero radial glow */
+  .bg-radial-glow {
+    background: radial-gradient(ellipse at 50% 60%, rgba(201, 168, 76, 0.07) 0%, transparent 70%);
+  }
+
+  /* Campaign progress bar — width driven by --progress-w CSS var */
+  .progress-bar {
+    width: var(--progress-w, 0%);
+  }
 }
