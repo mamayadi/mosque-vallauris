@@ -8,6 +8,18 @@ const mawaqitUrl    = 'https://mawaqit.net/fr/m/mosquee-de-vallauris-vallauris-0
 const helloAssoUrl  = 'https://www.helloasso.com/associations/association-culturelle-de-vallauris/formulaires/1';
 const googleMapsUrl = 'https://maps.app.goo.gl/iCYVHbP1aZfZmQH88';
 const address       = '11bis Bd des Deux Vallons, 06220 Vallauris';
+const campaignEmail = 'vallauris.acv@gmail.com';
+
+const campaign = {
+  achatRdC : 300_000,
+  travaux  : 150_000,
+  objectif : 450_000,
+  collecte :  85_000,
+  get reste() { return this.objectif - this.collecte; },
+  get pct()   { return Math.round((this.collecte / this.objectif) * 100); },
+};
+
+const fmt = (n: number) => n.toLocaleString('fr-FR');
 
 const services = [
   { label: 'Espace pour femmes',  available: true,  icon: 'ph:gender-female'   },
@@ -19,16 +31,6 @@ const services = [
   { label: "Salat Al-Aïd",        available: true,  icon: 'ph:moon-stars'      },
   { label: 'Iftar Ramadan',       available: true,  icon: 'ph:moon-stars'      },
   { label: 'Parking',             available: false, icon: 'ph:car'             },
-];
-
-const activities = [
-  { icon: 'ph:mosque',         label: 'Cinq prières quotidiennes',                ar: 'الصلوات الخمس'       },
-  { icon: 'ph:sun',            label: "Prière du vendredi (Jumu'ah)",              ar: 'صلاة الجمعة'          },
-  { icon: 'ph:graduation-cap', label: "Cours de Coran et d'arabe — enfants",      ar: 'تعليم القرآن والعربية' },
-  { icon: 'ph:books',          label: 'Cours islamiques pour adultes',             ar: 'دروس إسلامية للكبار'  },
-  { icon: 'ph:gender-female',  label: 'Espace de prière pour femmes',             ar: 'قسم النساء'           },
-  { icon: 'ph:moon-stars',     label: 'Iftar et Tarawih — Ramadan',               ar: 'إفطار رمضان'          },
-  { icon: 'ph:moon-stars',     label: "Prière de l'Aïd al-Fitr et al-Adha",      ar: 'صلاة العيد'           },
 ];
 
 const faqItems = [
@@ -78,8 +80,8 @@ const faqSchema = {
 ---
 
 <Layout
-  title="Grande Mosquée de Vallauris — Horaires Prières, Cours, Dons | 06220"
-  description="Grande Mosquée de Vallauris (06220, Alpes-Maritimes) — Horaires des 5 prières quotidiennes, Jumu'ah du vendredi, cours d'arabe et de Coran, espace femmes. Association Culturelle de Vallauris."
+  title="Grande Mosquée de Vallauris — Aidez-nous à bâtir notre mosquée | 06220"
+  description="Soutenez la Grande Mosquée de Vallauris (06220) — campagne de collecte pour l'achat du local. Horaires de prières, cours d'arabe, espace femmes. Association Culturelle de Vallauris."
   additionalSchema={faqSchema}
 >
   <!-- ══════════════════════════════════════════
@@ -101,17 +103,17 @@ const faqSchema = {
       <!-- Links -->
       <ul class="flex items-center gap-1 sm:gap-3 text-beige-200 text-sm font-semibold">
         <li>
-          <a href="#apropos"
+          <a href="#histoire"
              class="flex items-center gap-1.5 px-2 sm:px-3 py-2 rounded-lg hover:bg-white/10 hover:text-gold transition-all">
-            <Icon name="ph:info" class="w-4 h-4" />
-            <span class="hidden sm:inline">À propos</span>
+            <Icon name="ph:book-open" class="w-4 h-4" />
+            <span class="hidden sm:inline">Histoire</span>
           </a>
         </li>
         <li>
           <a href="#prieres"
              class="flex items-center gap-1.5 px-2 sm:px-3 py-2 rounded-lg hover:bg-white/10 hover:text-gold transition-all">
             <Icon name="ph:mosque" class="w-4 h-4" />
-            Prières
+            <span class="hidden sm:inline">Prières</span>
           </a>
         </li>
         <li>
@@ -156,132 +158,276 @@ const faqSchema = {
         La grande Mosquée<br/>
         <span class="text-gold">de Vallauris</span>
       </h1>
-      <p class="mt-4 text-beige-300 text-lg sm:text-xl font-light max-w-xl mx-auto">
-        Bienvenue dans votre mosquée — un lieu de prière, de paix et de fraternité
-      </p>
-      <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+      <div class="mt-2 max-w-lg mx-auto">
+        <p class="mt-2 font-amiri text-2xl sm:text-3xl font-bold text-gold">
+          Un projet pour aujourd'hui, une sadaqa pour l'éternité
+        </p>
+      <blockquote class="mt-4 max-w-xl mx-auto space-y-1">
+        <!-- <p class="font-amiri text-xl sm:text-2xl text-beige-200 leading-relaxed" lang="ar" dir="rtl">
+                  «مَنْ بَنَى مَسْجِدًا لِلَّهِ، بَنَى اللَّهُ لَهُ بَيْتًا فِي الْجَنَّةِ» 
+        </p> -->
+        <p class="text-beige-400 text-sm sm:text-base italic">
+          « Celui qui construit une mosquée pour Allah, Allah lui construit une demeure au Paradis. »
+        </p>
+        <!-- <footer class="text-beige-500 text-xs not-italic">
+          Hadith — Sahih Muslim, rapporté sur l'autorité du Prophète ﷺ
+        </footer> -->
+      </blockquote>
+      </div>
+      <div class="mt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
         <a href={helloAssoUrl} target="_blank" rel="noopener" class="btn-gold">
-          <Icon name="ph:hand-heart" class="w-5 h-5" />
+          <Icon name="ph:heart-fill" class="w-5 h-5" />
           Faire un don
         </a>
-        <a href="#prieres" class="btn-outline">
-          <Icon name="ph:mosque" class="w-6 h-6" />
-          Horaires des prières
+        <a href="#collecte" class="btn-outline">
+          <Icon name="ph:chart-bar" class="w-5 h-5" />
+          Notre projet
         </a>
       </div>
     </div>
 
-    <!-- Scroll hint -->
     <div class="absolute bottom-8 left-1/2 -translate-x-1/2 text-gold/60 animate-bounce z-10">
       <Icon name="ph:caret-circle-down" class="w-8 h-8" />
     </div>
   </section>
 
   <!-- ══════════════════════════════════════════
-       À PROPOS
+       COLLECTE + DON (merged)
   ══════════════════════════════════════════ -->
-  <section id="apropos" class="py-20 bg-pattern-beige">
+  <section id="collecte" class="py-20 bg-pattern-beige">
     <div class="max-w-4xl mx-auto px-4">
+
       <h2 class="heading-ornament text-4xl sm:text-5xl text-green-800 mb-2">
-        À propos de notre Mosquée
+        Aidez-nous à bâtir notre mosquée
       </h2>
-      <p class="text-center font-amiri text-2xl text-green-700/60 mb-12">عن مسجدنا</p>
+      <p class="text-center text-green-600 text-lg mb-10">
+        Association Culturelle de Vallauris
+      </p>
 
-      <div class="grid md:grid-cols-2 gap-10 items-start">
+      <!-- Context -->
+      <div class="space-y-4 text-green-800 leading-relaxed mb-10">
+        <p>
+          Depuis plusieurs années, la communauté musulmane de Vallauris prie dans un local en
+          demi-sous-sol, exigu et inadapté, qui ne peut plus accueillir dignement le nombre
+          croissant de fidèles venus chaque jour accomplir leur prière.
+        </p>
+        <p>
+          Grâce à votre générosité et à la grâce d'Allah, nous avons déjà franchi une première
+          étape décisive : l'acquisition du premier étage du bâtiment.
+          <strong class="text-gold"> Alhamdulillah.</strong>
+        </p>
+        <p>
+          Il nous reste aujourd'hui à accomplir la seconde et dernière étape : acheter le
+          rez-de-chaussée et réaliser les travaux d'aménagement pour offrir à notre communauté
+          un espace complet, accessible et digne.
+        </p>
+      </div>
 
-        <!-- Description text -->
-        <div class="space-y-4 text-green-800 text-base leading-relaxed">
-          <p>
-            La <strong>Grande Mosquée de Vallauris</strong> est le principal lieu de culte islamique
-            de la ville de <strong>Vallauris (06220)</strong>, dans les Alpes-Maritimes.
-            Gérée par l'<strong>Association Culturelle de Vallauris</strong>, elle accueille
-            la communauté musulmane de Vallauris, Golfe-Juan et des communes voisines de la Côte d'Azur.
-          </p>
-          <p>
-            Ouverte chaque jour pour les <strong>cinq prières quotidiennes</strong> —
-            <span lang="ar">الفجر</span> Fajr,
-            <span lang="ar">الظهر</span> Dhuhr,
-            <span lang="ar">العصر</span> Asr,
-            <span lang="ar">المغرب</span> Maghrib et
-            <span lang="ar">العشاء</span> Isha —
-            la mosquée est aussi un espace d'apprentissage, de rencontre et de solidarité.
-          </p>
-          <p>
-            La <strong>prière du vendredi</strong>
-            (<span lang="ar" class="font-amiri">صلاة الجمعة</span> — Jumu'ah)
-            rassemble chaque semaine les fidèles de Vallauris et des environs pour un moment de
-            recueillement et d'écoute.
-          </p>
+      <!-- Un lieu pour… -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-10">
+        {[
+          { icon: 'ph:mosque',         text: 'Un lieu pour prier'          },
+          { icon: 'ph:users-three',    text: 'Un lieu pour se retrouver'   },
+          { icon: 'ph:graduation-cap', text: 'Un lieu pour apprendre'      },
+          { icon: 'ph:house-line',     text: 'Un lieu qui nous appartient' },
+        ].map(({ icon, text }) => (
+          <div class="flex flex-col items-center gap-2 text-center p-4 rounded-xl bg-green-800 text-beige-100">
+            <Icon name={icon} class="w-7 h-7 text-gold" />
+            <p class="font-amiri text-sm sm:text-base leading-tight">{text}</p>
+          </div>
+        ))}
+      </div>
 
-          <!-- Quranic verse -->
-          <blockquote class="mt-6 border-l-4 border-gold pl-4 space-y-2">
-            <p class="font-amiri text-xl text-green-800 leading-relaxed" lang="ar" dir="rtl">
-              ﴿ إِنَّمَا يَعْمُرُ مَسَاجِدَ اللَّهِ مَنْ آمَنَ بِاللَّهِ وَالْيَوْمِ الْآخِرِ ﴾
-            </p>
-            <footer class="text-sm text-green-600 italic">
-              « Les mosquées d'Allah ne sont fréquentées que par ceux qui croient en Allah
-              et au Jour Dernier. » — Sourate At-Tawbah, 18
-            </footer>
-          </blockquote>
+      <!-- Hadith -->
+      <blockquote class="card-arabesque border-l-4 border-gold bg-white p-6 mb-10">
+        <p class="font-amiri text-2xl text-green-700 mb-3 text-right leading-relaxed" lang="ar" dir="rtl">
+          «مَنْ بَنَى مَسْجِدًا لِلَّهِ، بَنَى اللَّهُ لَهُ بَيْتًا فِي الْجَنَّةِ»
+        </p>
+        <p class="text-green-800 text-lg leading-relaxed italic">
+          « Celui qui construit une mosquée pour Allah, Allah lui construit une demeure
+          au Paradis. »
+        </p>
+        <footer class="text-green-600 text-sm mt-2 not-italic">
+          Hadith — Sahih Muslim, rapporté sur l'autorité du Prophète ﷺ
+        </footer>
+      </blockquote>
+
+      <!-- Sadaqa jariya -->
+      <p class="text-center text-green-700 leading-relaxed mb-10">
+        C'est une <em class="text-gold font-semibold not-italic">sadaqa jaria</em> —
+        une aumône dont la récompense continue après notre départ de ce monde.
+        Chaque euro versé est une pierre posée pour vous, pour vos enfants et pour les
+        générations futures.
+      </p>
+
+      <!-- Progress card -->
+      <div class="card-arabesque bg-white border border-green-100 shadow-lg p-6 sm:p-8 mb-8">
+        <h3 class="font-amiri text-2xl text-green-800 mb-6 flex items-center gap-2">
+          <Icon name="ph:chart-bar" class="w-6 h-6 text-gold" />
+          État de la collecte
+        </h3>
+
+        <div class="mb-8">
+          <div class="flex justify-between items-end mb-2">
+            <span class="text-green-700 text-sm">
+              Collecté : <strong class="text-green-800">{fmt(campaign.collecte)} €</strong>
+            </span>
+            <span class="text-2xl font-bold text-gold">{campaign.pct}%</span>
+          </div>
+          <div class="w-full h-5 bg-green-100 rounded-full overflow-hidden">
+            <div class="h-full bg-gold rounded-full" style={`width: ${campaign.pct}%`}></div>
+          </div>
+          <div class="flex justify-between text-xs text-green-500 mt-1">
+            <span>0 €</span>
+            <span>Objectif : {fmt(campaign.objectif)} €</span>
+          </div>
         </div>
 
-        <!-- Activities list -->
-        <div>
-          <h3 class="font-amiri text-2xl text-green-800 mb-5 flex items-center gap-2">
-            <Icon name="ph:star-four" class="w-5 h-5 text-gold" />
-            Activités &amp; services
-            <span class="font-amiri text-lg text-green-600/60 mr-2" lang="ar">— الخدمات</span>
-          </h3>
-          <ul class="space-y-2">
-            {activities.map(({ icon, label, ar }) => (
-              <li class="flex items-center gap-3 px-4 py-3 rounded-lg bg-white border border-green-100 shadow-sm">
-                <Icon name={icon} class="w-5 h-5 text-gold shrink-0" />
-                <span class="flex-1 text-sm font-medium text-green-800">{label}</span>
-                <span class="font-amiri text-sm text-green-500 shrink-0" lang="ar">{ar}</span>
-              </li>
-            ))}
-          </ul>
+        <div class="space-y-1 text-sm sm:text-base">
+          <div class="flex justify-between items-center py-3 border-b border-green-50">
+            <span class="text-green-700">Prix d'achat du rez-de-chaussée</span>
+            <span class="font-semibold text-green-800">{fmt(campaign.achatRdC)} €</span>
+          </div>
+          <div class="flex justify-between items-center py-3 border-b border-green-100">
+            <span class="text-green-700">Travaux et dépenses connexes</span>
+            <span class="font-semibold text-green-800">{fmt(campaign.travaux)} €</span>
+          </div>
+          <div class="flex justify-between items-center py-3 border-b border-green-200 bg-green-50 px-3 rounded">
+            <span class="font-bold text-green-800">Objectif total</span>
+            <span class="font-bold text-green-800 text-lg">{fmt(campaign.objectif)} €</span>
+          </div>
+          <div class="flex justify-between items-center py-3 border-b border-green-50">
+            <span class="text-green-700">
+              Déjà collecté
+              <span class="text-xs text-green-500 ml-1">Alhamdulillah</span>
+            </span>
+            <span class="font-bold text-gold text-lg">{fmt(campaign.collecte)} €</span>
+          </div>
+          <div class="flex justify-between items-center py-4 px-4 rounded-xl bg-green-800 text-beige-100 mt-2">
+            <span class="font-semibold text-base">Reste à collecter</span>
+            <span class="font-bold text-xl text-gold">{fmt(campaign.reste)} €</span>
+          </div>
+        </div>
+
+        <p class="text-center text-sm text-green-600 mt-4 italic">
+          Alhamdulillah, nous avons déjà acheté le 1er étage et réuni {campaign.pct}%
+          de l'objectif grâce aux dons des fidèles.
+        </p>
+      </div>
+
+      <!-- CTA + Quranic verse -->
+      <div class="text-center space-y-5">
+        <p class="text-green-700 leading-relaxed max-w-xl mx-auto">
+          Chaque don compte. Chaque partage compte. Si vous ne pouvez pas donner,
+          partagez cette campagne autour de vous — c'est aussi un acte de bien.
+        </p>
+
+        <a href={helloAssoUrl} target="_blank" rel="noopener"
+           class="btn-gold text-xl px-10 py-5 inline-flex items-center gap-3">
+          <Icon name="ph:heart-fill" class="w-6 h-6" />
+          Faire un don sur HelloAsso
+        </a>
+
+        <p class="text-green-600 text-sm">
+          Contact :
+          <a href={`mailto:${campaignEmail}`}
+             class="text-gold hover:text-gold-light underline underline-offset-2 transition-colors">
+            {campaignEmail}
+          </a>
+        </p>
+
+        <div class="pt-6 border-t border-green-200 mt-4">
+          <p class="font-amiri text-2xl text-green-700/60 tracking-widest" lang="ar" dir="rtl">
+            ﴿ وَمَا أَنفَقْتُم مِّن شَيْءٍ فَهُوَ يُخْلِفُهُ ﴾
+          </p>
+          <p class="text-green-600 text-xs mt-1">
+            « Tout ce que vous dépensez, Il vous le remplace. » — Sourate Saba', 39
+          </p>
         </div>
       </div>
+
     </div>
   </section>
 
   <!-- ══════════════════════════════════════════
-       HORAIRES DES PRIÈRES
+       NOTRE HISTOIRE
   ══════════════════════════════════════════ -->
-  <section id="prieres" class="py-20 bg-pattern-dark">
-    <div class="max-w-4xl mx-auto px-4">
+  <section id="histoire" class="py-20 bg-pattern-dark">
+    <div class="max-w-3xl mx-auto px-4">
+
       <h2 class="heading-ornament text-4xl sm:text-5xl text-beige-100 mb-2">
-        Horaires des Prières
+        Notre histoire
       </h2>
-      <p class="text-center font-amiri text-2xl text-beige-400/70 mb-3" lang="ar">مواقيت الصلاة</p>
-      <p class="text-center text-beige-300 mb-10 text-lg">
-        Cinq prières quotidiennes — en direct depuis
-        <a href={mawaqitUrl} target="_blank" rel="noopener"
-           class="text-gold font-semibold underline underline-offset-2 hover:text-gold-light transition-colors">
-          Mawaqit
-        </a>
+      <p class="text-center font-amiri text-xl text-gold/80 mb-12">
+        par la grâce d'Allah — بإذن الله
       </p>
 
-      <div class="card-arabesque bg-white shadow-xl overflow-hidden">
-        <div class="relative w-full" style="padding-top: 65%;">
-          <iframe
-            src={mawaqitUrl}
-            class="absolute inset-0 w-full h-full border-0"
-            loading="lazy"
-            title="Horaires des prières — Mosquée de Vallauris sur Mawaqit"
-            sandbox="allow-scripts allow-same-origin"
-          ></iframe>
+      <div class="space-y-5 text-beige-300 text-base leading-relaxed">
+        <p>
+          L'histoire de la mosquée de Vallauris commence au début des années 2000, par une simple
+          salle de prière, modeste et discrète. Il serait difficile de parler à l'époque d'une
+          véritable mosquée : le lieu était petit, situé en entresol, avec des moyens très limités.
+          Pourtant, malgré l'étroitesse de l'espace, les cœurs étaient grands et unis dans
+          l'adoration d'Allah.
+        </p>
+        <p>
+          Pendant de nombreuses années, cette salle de prière a accueilli les fidèles pour les
+          prières quotidiennes, le vendredi et le mois de Ramadan. C'est là que se sont tissés les
+          premiers liens fraternels, dans la patience, la persévérance et la sincérité.
+        </p>
+        <p>
+          Avec le temps, par la permission d'Allah, la communauté musulmane de Vallauris s'est
+          agrandie. Les besoins ont augmenté, et cette simple salle de prière a naturellement évolué
+          pour devenir un lieu plus structuré, assumant peu à peu le rôle de mosquée, au service de
+          la prière, de l'éducation et de l'entraide.
+        </p>
+      </div>
+
+      <div class="my-10 flex items-center gap-4">
+        <div class="flex-1 h-px bg-gold/20"></div>
+        <span class="text-gold font-amiri text-2xl">❋</span>
+        <div class="flex-1 h-px bg-gold/20"></div>
+      </div>
+
+      <div class="grid sm:grid-cols-2 gap-6 mb-10">
+        <div class="card-arabesque bg-green-800/40 border border-gold/20 p-6">
+          <h3 class="font-amiri text-xl text-gold mb-3 flex items-center gap-2">
+            <Icon name="ph:calendar-check" class="w-5 h-5" />
+            Aujourd'hui
+          </h3>
+          <p class="text-beige-300 text-sm leading-relaxed">
+            Une étape essentielle s'ouvre : <strong class="text-beige-200">l'achat du local</strong>,
+            afin d'assurer la stabilité et l'avenir de ce lieu de culte.
+          </p>
+          <a href="#collecte" class="mt-4 inline-flex items-center gap-2 text-gold hover:text-gold-light text-sm font-semibold transition-colors">
+            <Icon name="ph:hand-heart" class="w-4 h-4" />
+            Soutenir ce projet
+          </a>
+        </div>
+        <div class="card-arabesque bg-green-800/40 border border-gold/20 p-6">
+          <h3 class="font-amiri text-xl text-gold mb-3 flex items-center gap-2">
+            <Icon name="ph:star-four" class="w-5 h-5" />
+            Demain
+          </h3>
+          <p class="text-beige-300 text-sm leading-relaxed">
+            Notre espoir est de bâtir un espace <strong class="text-beige-200">digne, accueillant
+            et durable</strong>, où la foi pourra être vécue sereinement et transmise aux
+            générations futures.
+          </p>
         </div>
       </div>
 
-      <div class="mt-6 text-center">
-        <a href={mawaqitUrl} target="_blank" rel="noopener"
-           class="btn-outline text-beige-200 border-beige-400 inline-flex items-center gap-2">
-          Voir les horaires sur Mawaqit
-          <Icon name="ph:arrow-square-out" class="w-4 h-4" />
-        </a>
+      <div class="text-center border-t border-gold/20 pt-8 space-y-4">
+        <p class="text-beige-300 leading-relaxed">
+          Qu'Allah bénisse ce projet, accepte les efforts de chacun et fasse de ce lieu une
+          source de bien et de guidée pour tous.
+          <em class="text-gold not-italic font-semibold"> Âmîn.</em>
+        </p>
+        <p class="font-amiri text-2xl text-gold/60" lang="ar" dir="rtl">
+          آمين يا رب العالمين
+        </p>
       </div>
+
     </div>
   </section>
 
@@ -295,7 +441,6 @@ const faqSchema = {
       </h2>
 
       <div class="grid sm:grid-cols-2 gap-8">
-        <!-- Adresse -->
         <div class="card-arabesque bg-white border border-green-100 p-6 text-green-800">
           <h3 class="font-amiri text-2xl text-gold mb-4 flex items-center gap-2">
             <Icon name="ph:map-pin-fill" class="w-6 h-6" />
@@ -310,7 +455,6 @@ const faqSchema = {
           </a>
         </div>
 
-        <!-- Accès -->
         <div class="card-arabesque bg-white border border-green-100 p-6 text-green-800">
           <h3 class="font-amiri text-2xl text-gold mb-4 flex items-center gap-2">
             <Icon name="ph:clock-fill" class="w-6 h-6" />
@@ -333,7 +477,6 @@ const faqSchema = {
         </div>
       </div>
 
-      <!-- Installations & services -->
       <div class="mt-10">
         <h3 class="heading-ornament font-amiri text-2xl text-green-800 mb-6">
           Installations &amp; services
@@ -359,24 +502,26 @@ const faqSchema = {
   </section>
 
   <!-- ══════════════════════════════════════════
-       LOCALISATION
+       LOCALISATION — vue satellite
   ══════════════════════════════════════════ -->
   <section id="localisation" class="py-20 bg-pattern-dark">
     <div class="max-w-4xl mx-auto px-4">
       <h2 class="heading-ornament text-4xl sm:text-5xl text-beige-100 mb-2">
         Comment nous trouver
       </h2>
-      <p class="text-center text-beige-300 mb-10 text-lg">{address} — Vallauris, Alpes-Maritimes</p>
+      <p class="text-center text-beige-300 mb-10 text-lg">
+        {address} — Vallauris, Alpes-Maritimes
+      </p>
 
       <div class="card-arabesque overflow-hidden shadow-xl">
         <div class="relative w-full" style="padding-top: 56.25%;">
           <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d964.5462971933575!2d7.052169180304047!3d43.577944259776814!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12cc2b0068603e25%3A0xd4b3d65c3a4e6077!2sSalle%20de%20pri%C3%A8re%20Mosque%20de%20Vallauris!5e0!3m2!1sfr!2sfr!4v1777399106598!5m2!1sfr!2sfr"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d964.5462971933575!2d7.052169180304047!3d43.577944259776814!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12cc2b0068603e25%3A0xd4b3d65c3a4e6077!2sSalle%20de%20pri%C3%A8re%20Mosque%20de%20Vallauris!5e1!3m2!1sfr!2sfr!4v1777399106598!5m2!1sfr!2sfr"
             class="absolute inset-0 w-full h-full border-0"
             allowfullscreen
             loading="lazy"
             referrerpolicy="no-referrer-when-downgrade"
-            title="Localisation de la Mosquée de Vallauris — 11bis Bd des Deux Vallons"
+            title="Localisation de la Mosquée de Vallauris — vue satellite"
           ></iframe>
         </div>
       </div>
@@ -392,14 +537,54 @@ const faqSchema = {
   </section>
 
   <!-- ══════════════════════════════════════════
+       HORAIRES DES PRIÈRES
+  ══════════════════════════════════════════ -->
+  <section id="prieres" class="py-20 bg-pattern-beige">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="heading-ornament text-4xl sm:text-5xl text-green-800 mb-2">
+        Horaires des Prières
+      </h2>
+      <p class="text-center font-amiri text-2xl text-green-700/60 mb-3" lang="ar">مواقيت الصلاة</p>
+      <p class="text-center text-green-700 mb-10 text-lg">
+        Cinq prières quotidiennes — en direct depuis
+        <a href={mawaqitUrl} target="_blank" rel="noopener"
+           class="text-gold font-semibold underline underline-offset-2 hover:text-gold-light transition-colors">
+          Mawaqit
+        </a>
+      </p>
+
+      <div class="card-arabesque bg-white shadow-xl overflow-hidden flex justify-center">
+        <iframe
+          src="//mawaqit.net/fr/w/mosquee-de-vallauris-vallauris-06220-france?showOnly5PrayerTimes=0"
+          title="Horaires des prières — Mosquée de Vallauris sur Mawaqit"
+          sandbox="allow-scripts allow-same-origin"
+          loading="lazy"
+          frameborder="0"
+          scrolling="no"
+          class="w-full border-0 block"
+          style="height: 420px;"
+        ></iframe>
+      </div>
+
+      <div class="mt-6 text-center">
+        <a href={mawaqitUrl} target="_blank" rel="noopener"
+           class="btn-outline text-green-700 border-green-600 inline-flex items-center gap-2">
+          Voir les horaires sur Mawaqit
+          <Icon name="ph:arrow-square-out" class="w-4 h-4" />
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
        FAQ
   ══════════════════════════════════════════ -->
-  <section id="faq" class="py-20 bg-pattern-beige">
+  <section id="faq" class="py-20 bg-pattern-dark">
     <div class="max-w-3xl mx-auto px-4">
-      <h2 class="heading-ornament text-4xl sm:text-5xl text-green-800 mb-2">
+      <h2 class="heading-ornament text-4xl sm:text-5xl text-beige-100 mb-2">
         Questions fréquentes
       </h2>
-      <p class="text-center font-amiri text-2xl text-green-700/60 mb-12" lang="ar">الأسئلة الشائعة</p>
+      <p class="text-center font-amiri text-2xl text-beige-400/60 mb-12" lang="ar">الأسئلة الشائعة</p>
 
       <div class="space-y-3">
         {faqItems.map(({ q, a }) => (
@@ -419,63 +604,11 @@ const faqSchema = {
   </section>
 
   <!-- ══════════════════════════════════════════
-       FAIRE UN DON
-  ══════════════════════════════════════════ -->
-  <section id="don" class="py-24 bg-pattern-dark relative overflow-hidden">
-    <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-gold to-transparent"></div>
-
-    <div class="max-w-3xl mx-auto px-4 text-center">
-      <div class="flex justify-center mb-6">
-        <Icon name="ph:hand-heart-fill" class="w-20 h-20 text-gold opacity-90" />
-      </div>
-
-      <h2 class="heading-ornament text-4xl sm:text-5xl text-beige-100 mb-6">
-        Soutenez notre Mosquée
-      </h2>
-
-      <div class="divider-gold max-w-sm mx-auto mb-8">
-        <span class="text-gold text-sm font-semibold tracking-widest uppercase">
-          Votre don fait la différence
-        </span>
-      </div>
-
-      <p class="text-beige-300 text-lg sm:text-xl leading-relaxed mb-4">
-        La mosquée vit grâce à la générosité de sa communauté. Vos dons permettent
-        d'assurer l'entretien du lieu de culte, l'organisation des activités
-        religieuses et le soutien aux familles dans le besoin.
-      </p>
-      <p class="text-beige-400 text-base mb-10">
-        Chaque contribution, petite ou grande, est une <em class="text-gold not-italic">sadaqa jâriya</em> —
-        une aumône dont la récompense se perpétue.
-      </p>
-
-      <a href={helloAssoUrl} target="_blank" rel="noopener" class="btn-gold text-xl px-10 py-5">
-        <Icon name="ph:heart-fill" class="w-6 h-6" />
-        Faire un don sur HelloAsso
-      </a>
-
-      <p class="mt-6 text-beige-500 text-sm">
-        Dons sécurisés via HelloAsso · Association culturelle de Vallauris
-      </p>
-
-      <div class="mt-12 font-amiri text-2xl text-gold/60 tracking-widest" lang="ar" dir="rtl">
-        ﴿ وَمَا أَنفَقْتُم مِّن شَيْءٍ فَهُوَ يُخْلِفُهُ ﴾
-      </div>
-      <p class="text-beige-500 text-xs mt-1">
-        « Tout ce que vous dépensez, Il vous le remplace. » — Sourate Saba', 39
-      </p>
-    </div>
-
-    <div class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-gold to-transparent"></div>
-  </section>
-
-  <!-- ══════════════════════════════════════════
        FOOTER
   ══════════════════════════════════════════ -->
   <footer class="bg-green-950 text-beige-400 py-12">
     <div class="max-w-5xl mx-auto px-4">
       <div class="grid sm:grid-cols-3 gap-8 mb-8">
-        <!-- Identity -->
         <div>
           <h3 class="font-amiri text-xl text-beige-200 mb-3">La grande Mosquée de Vallauris</h3>
           <p class="text-sm leading-relaxed">{address}</p>
@@ -487,14 +620,19 @@ const faqSchema = {
           </a>
         </div>
 
-        <!-- Liens rapides -->
         <div>
           <h3 class="font-amiri text-xl text-beige-200 mb-3">Liens rapides</h3>
           <ul class="space-y-2 text-sm">
             <li>
-              <a href="#apropos" class="inline-flex items-center gap-2 hover:text-gold transition-colors">
-                <Icon name="ph:info" class="w-4 h-4" />
-                À propos
+              <a href="#collecte" class="inline-flex items-center gap-2 hover:text-gold transition-colors">
+                <Icon name="ph:hand-heart" class="w-4 h-4" />
+                Notre campagne de dons
+              </a>
+            </li>
+            <li>
+              <a href="#histoire" class="inline-flex items-center gap-2 hover:text-gold transition-colors">
+                <Icon name="ph:book-open" class="w-4 h-4" />
+                Notre histoire
               </a>
             </li>
             <li>
@@ -515,16 +653,9 @@ const faqSchema = {
                 FAQ
               </a>
             </li>
-            <li>
-              <a href="#don" class="inline-flex items-center gap-2 hover:text-gold transition-colors">
-                <Icon name="ph:hand-heart" class="w-4 h-4" />
-                Faire un don
-              </a>
-            </li>
           </ul>
         </div>
 
-        <!-- Ressources -->
         <div>
           <h3 class="font-amiri text-xl text-beige-200 mb-3">Ressources</h3>
           <ul class="space-y-2 text-sm">
@@ -544,10 +675,14 @@ const faqSchema = {
                 <Icon name="ph:arrow-square-out" class="w-3 h-3 opacity-60" />
               </a>
             </li>
+            <li>
+              <a href={`mailto:${campaignEmail}`}
+                 class="inline-flex items-center gap-2 hover:text-gold transition-colors">
+                <Icon name="ph:envelope" class="w-4 h-4" />
+                {campaignEmail}
+              </a>
+            </li>
           </ul>
-          <div class="mt-6 font-amiri text-xl text-gold/40" lang="ar">
-            مسجد فالوريس           
-          </div>
         </div>
       </div>
 
