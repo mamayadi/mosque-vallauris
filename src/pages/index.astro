@@ -219,8 +219,7 @@ const additionalSchemas = {
   ══════════════════════════════════════════ -->
   <section
     id="accueil"
-    class="relative min-h-screen flex flex-col items-center justify-center text-center
-                  bg-pattern-dark overflow-hidden pt-16"
+    class="relative min-h-[100dvh] flex flex-col bg-pattern-dark overflow-hidden pt-16"
   >
     <div class="absolute inset-0 bg-radial-glow pointer-events-none"></div>
     <div
@@ -228,68 +227,74 @@ const additionalSchemas = {
     >
     </div>
 
-    <!-- Mosque SVG illustration -->
+    <!-- Main content — grows to fill viewport, centred. pb-20 keeps content clear of the absolute arrow -->
     <div
-      class="relative z-10 w-full max-w-lg mx-auto px-4 mb-6 text-beige-100 opacity-90"
+      class="relative z-10 flex-1 flex flex-col items-center justify-center text-center px-4 py-6 pb-20"
     >
-      <Fragment set:html={mosqueSvg} />
-    </div>
-
-    <!-- Title -->
-    <div class="relative z-10 px-4 animate-fade-in">
-      <div class="divider-gold max-w-xs mx-auto mb-4">
-        <span class="text-gold text-xl">بسم الله الرحمن الرحيم</span>
+      <!-- Mosque SVG illustration -->
+      <div class="w-full max-w-lg mx-auto mb-6 text-beige-100 opacity-90">
+        <Fragment set:html={mosqueSvg} />
       </div>
-      <h1
-        class="font-amiri text-4xl sm:text-5xl md:text-6xl font-bold text-beige-100 leading-tight"
-      >
-        La grande Mosquée<br />
-        <span class="text-gold">de Vallauris</span>
-      </h1>
-      <div class="mt-2 max-w-lg mx-auto">
-        <p class="mt-2 font-amiri text-2xl sm:text-3xl font-bold text-gold">
-          Un projet pour aujourd'hui, une sadaqa pour l'éternité
-        </p>
-        <blockquote class="mt-4 max-w-xl mx-auto space-y-1">
-          <!-- <p class="font-amiri text-xl sm:text-2xl text-beige-200 leading-relaxed" lang="ar" dir="rtl">
-                  «مَنْ بَنَى مَسْجِدًا لِلَّهِ، بَنَى اللَّهُ لَهُ بَيْتًا فِي الْجَنَّةِ» 
-        </p> -->
-          <p class="text-beige-400 text-sm sm:text-base italic">
-            « Celui qui construit une mosquée pour Allah, Allah lui construit
-            une demeure au Paradis. »
+
+      <!-- Title -->
+      <div class="animate-fade-in">
+        <div class="divider-gold max-w-xs mx-auto mb-4">
+          <span class="text-gold text-xl">بسم الله الرحمن الرحيم</span>
+        </div>
+        <h1
+          class="font-amiri text-3xl sm:text-5xl md:text-6xl font-bold text-beige-100 leading-tight"
+        >
+          La grande Mosquée<br />
+          <span class="text-gold">de Vallauris</span>
+        </h1>
+        <div class="mt-2 max-w-lg mx-auto">
+          <p class="mt-2 font-amiri text-2xl sm:text-3xl font-bold text-gold">
+            Un projet pour aujourd'hui, une sadaqa pour l'éternité
           </p>
-          <!-- <footer class="text-beige-500 text-xs not-italic">
-          Hadith — Sahih Muslim, rapporté sur l'autorité du Prophète ﷺ
-        </footer> -->
-        </blockquote>
-      </div>
-      <div
-        class="mt-4 flex flex-col sm:flex-row items-center justify-center gap-4"
-      >
-        <a href={helloAssoUrl} target="_blank" rel="noopener" class="btn-gold">
-          <Icon name="ph:heart-fill" class="w-5 h-5" />
-          Faire un don
-        </a>
-        <a href="#collecte" class="btn-outline">
-          <Icon name="ph:chart-bar" class="w-5 h-5" />
-          Notre projet
-        </a>
+          <blockquote class="mt-4 max-w-xl mx-auto space-y-1">
+            <p class="text-beige-400 text-sm sm:text-base italic">
+              « Celui qui construit une mosquée pour Allah, Allah lui construit
+              une demeure au Paradis. »
+            </p>
+          </blockquote>
+        </div>
+        <div
+          class="mt-4 flex flex-col sm:flex-row items-center justify-center gap-4"
+        >
+          <a
+            href={helloAssoUrl}
+            target="_blank"
+            rel="noopener"
+            class="btn-gold"
+          >
+            <Icon name="ph:heart-fill" class="w-5 h-5" />
+            Faire un don
+          </a>
+          <a href="#collecte" class="btn-outline">
+            <Icon name="ph:chart-bar" class="w-5 h-5" />
+            Notre projet
+          </a>
+        </div>
       </div>
     </div>
 
+    <!-- Scroll indicator — absolute to section bottom, content has pb-20 clearance -->
     <div
-      class="absolute bottom-8 left-1/2 -translate-x-1/2 text-gold/60 animate-bounce z-10"
+      id="scroll-hint"
+      class="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 text-gold/70 animate-bounce transition-opacity duration-500"
     >
-      <Icon name="ph:caret-circle-down" class="w-8 h-8" />
+      <Icon name="ph:caret-circle-down" class="w-10 h-10 drop-shadow-lg" />
     </div>
   </section>
 
   <!-- ══════════════════════════════════════════
        COLLECTE + DON (merged)
   ══════════════════════════════════════════ -->
-  <section id="collecte" class="py-20 bg-pattern-beige">
+  <section id="collecte" class="py-12 sm:py-20 bg-pattern-beige">
     <div class="max-w-4xl mx-auto px-4">
-      <h2 class="heading-ornament text-4xl sm:text-5xl text-green-800 mb-2">
+      <h2
+        class="heading-ornament text-3xl sm:text-4xl md:text-5xl text-green-800 mb-2"
+      >
         Aidez-nous à bâtir notre mosquée
       </h2>
       <p class="text-center text-green-600 text-lg mb-10">
@@ -390,7 +395,8 @@ const additionalSchemas = {
             <div
               class="h-full bg-gold rounded-full progress-bar"
               style={`--progress-w: ${campaign.pct}%`}
-            ></div>
+            >
+            </div>
           </div>
           <div class="flex justify-between text-xs text-green-500 mt-1">
             <span>0 €</span>
@@ -400,45 +406,53 @@ const additionalSchemas = {
 
         <div class="space-y-1 text-sm sm:text-base">
           <div
-            class="flex justify-between items-center py-3 border-b border-green-50"
+            class="flex justify-between items-center gap-4 py-3 border-b border-green-50"
           >
-            <span class="text-green-700">Prix d'achat du rez-de-chaussée</span>
-            <span class="font-semibold text-green-800"
+            <span class="text-green-700 min-w-0 shrink"
+              >Prix d'achat du rez-de-chaussée</span
+            >
+            <span class="font-semibold text-green-800 shrink-0"
               >{fmt(campaign.achatRdC)} €</span
             >
           </div>
           <div
-            class="flex justify-between items-center py-3 border-b border-green-100"
+            class="flex justify-between items-center gap-4 py-3 border-b border-green-100"
           >
-            <span class="text-green-700">Travaux et dépenses connexes</span>
-            <span class="font-semibold text-green-800"
+            <span class="text-green-700 min-w-0 shrink"
+              >Travaux et dépenses connexes</span
+            >
+            <span class="font-semibold text-green-800 shrink-0"
               >{fmt(campaign.travaux)} €</span
             >
           </div>
           <div
-            class="flex justify-between items-center py-3 border-b border-green-200 bg-green-50 px-3 rounded"
+            class="flex justify-between items-center gap-4 py-3 border-b border-green-200 bg-green-50 px-3 rounded"
           >
-            <span class="font-bold text-green-800">Objectif total</span>
-            <span class="font-bold text-green-800 text-lg"
+            <span class="font-bold text-green-800 min-w-0 shrink"
+              >Objectif total</span
+            >
+            <span class="font-bold text-green-800 text-lg shrink-0"
               >{fmt(campaign.objectif)} €</span
             >
           </div>
           <div
-            class="flex justify-between items-center py-3 border-b border-green-50"
+            class="flex justify-between items-center gap-4 py-3 border-b border-green-50"
           >
-            <span class="text-green-700">
+            <span class="text-green-700 min-w-0 shrink">
               Déjà collecté
               <span class="text-xs text-green-500 ml-1">Alhamdulillah</span>
             </span>
-            <span class="font-bold text-gold text-lg"
+            <span class="font-bold text-gold text-lg shrink-0"
               >{fmt(campaign.collecte)} €</span
             >
           </div>
           <div
-            class="flex justify-between items-center py-4 px-4 rounded-xl bg-green-800 text-beige-100 mt-2"
+            class="flex justify-between items-center gap-4 py-4 px-4 rounded-xl bg-green-800 text-beige-100 mt-2"
           >
-            <span class="font-semibold text-base">Reste à collecter</span>
-            <span class="font-bold text-xl text-gold"
+            <span class="font-semibold text-base min-w-0 shrink"
+              >Reste à collecter</span
+            >
+            <span class="font-bold text-xl text-gold shrink-0"
               >{fmt(campaign.reste)} €</span
             >
           </div>
@@ -463,7 +477,7 @@ const additionalSchemas = {
           href={helloAssoUrl}
           target="_blank"
           rel="noopener"
-          class="btn-gold text-xl px-10 py-5 inline-flex items-center gap-3"
+          class="btn-gold w-full sm:w-auto justify-center text-base sm:text-xl px-6 sm:px-10 py-4 sm:py-5 inline-flex items-center gap-3"
         >
           <Icon name="ph:heart-fill" class="w-6 h-6" />
           Faire un don sur HelloAsso
@@ -499,9 +513,11 @@ const additionalSchemas = {
   <!-- ══════════════════════════════════════════
        NOTRE HISTOIRE
   ══════════════════════════════════════════ -->
-  <section id="histoire" class="py-20 bg-pattern-dark">
+  <section id="histoire" class="py-12 sm:py-20 bg-pattern-dark">
     <div class="max-w-3xl mx-auto px-4">
-      <h2 class="heading-ornament text-4xl sm:text-5xl text-beige-100 mb-2">
+      <h2
+        class="heading-ornament text-3xl sm:text-4xl md:text-5xl text-beige-100 mb-2"
+      >
         Notre histoire
       </h2>
       <p class="text-center font-amiri text-xl text-gold/80 mb-12">
@@ -589,9 +605,11 @@ const additionalSchemas = {
   <!-- ══════════════════════════════════════════
        INFOS PRATIQUES
   ══════════════════════════════════════════ -->
-  <section class="py-20 bg-pattern-beige">
+  <section class="py-12 sm:py-20 bg-pattern-beige">
     <div class="max-w-4xl mx-auto px-4">
-      <h2 class="heading-ornament text-4xl sm:text-5xl text-green-800 mb-10">
+      <h2
+        class="heading-ornament text-3xl sm:text-4xl md:text-5xl text-green-800 mb-10"
+      >
         Informations pratiques
       </h2>
 
@@ -693,9 +711,11 @@ const additionalSchemas = {
   <!-- ══════════════════════════════════════════
        LOCALISATION — vue satellite
   ══════════════════════════════════════════ -->
-  <section id="localisation" class="py-20 bg-pattern-dark">
+  <section id="localisation" class="py-12 sm:py-20 bg-pattern-dark">
     <div class="max-w-4xl mx-auto px-4">
-      <h2 class="heading-ornament text-4xl sm:text-5xl text-beige-100 mb-2">
+      <h2
+        class="heading-ornament text-3xl sm:text-4xl md:text-5xl text-beige-100 mb-2"
+      >
         Comment nous trouver
       </h2>
       <p class="text-center text-beige-300 mb-10 text-lg">
@@ -732,9 +752,11 @@ const additionalSchemas = {
   <!-- ══════════════════════════════════════════
        HORAIRES DES PRIÈRES
   ══════════════════════════════════════════ -->
-  <section id="prieres" class="py-20 bg-pattern-beige">
+  <section id="prieres" class="py-12 sm:py-20 bg-pattern-beige">
     <div class="max-w-4xl mx-auto px-4">
-      <h2 class="heading-ornament text-4xl sm:text-5xl text-green-800 mb-2">
+      <h2
+        class="heading-ornament text-3xl sm:text-4xl md:text-5xl text-green-800 mb-2"
+      >
         Horaires des Prières
       </h2>
       <p
@@ -785,9 +807,11 @@ const additionalSchemas = {
   <!-- ══════════════════════════════════════════
        FAQ
   ══════════════════════════════════════════ -->
-  <section id="faq" class="py-20 bg-pattern-dark">
+  <section id="faq" class="py-12 sm:py-20 bg-pattern-dark">
     <div class="max-w-3xl mx-auto px-4">
-      <h2 class="heading-ornament text-4xl sm:text-5xl text-beige-100 mb-2">
+      <h2
+        class="heading-ornament text-3xl sm:text-4xl md:text-5xl text-beige-100 mb-2"
+      >
         Questions fréquentes
       </h2>
       <p
@@ -955,10 +979,14 @@ const additionalSchemas = {
 
   <script>
     const nav = document.getElementById("navbar");
+    const scrollHint = document.getElementById("scroll-hint");
     window.addEventListener(
       "scroll",
       () => {
         nav?.classList.toggle("py-1", window.scrollY > 80);
+        if (scrollHint && window.scrollY > 60) {
+          scrollHint.style.opacity = "0";
+        }
       },
       { passive: true },
     );
