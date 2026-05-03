@@ -4,11 +4,13 @@ import '../styles/global.css';
 interface Props {
   title?: string;
   description?: string;
+  additionalSchema?: object;
 }
 
 const {
   title = 'La grande Mosquée de Vallauris',
   description = 'Site officiel de la grande Mosquée de Vallauris — Horaires de prières, localisation et dons.',
+  additionalSchema,
 } = Astro.props;
 
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href;
@@ -77,8 +79,10 @@ const jsonLd = {
 
     <title>{title}</title>
 
-    <!-- Structured data -->
+    <!-- Structured data — PlaceOfWorship -->
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    <!-- Additional structured data (e.g. FAQPage) -->
+    {additionalSchema && <script type="application/ld+json" set:html={JSON.stringify(additionalSchema)} />}
   </head>
   <body class="bg-beige-100 text-green-800 antialiased">
     <slot />
