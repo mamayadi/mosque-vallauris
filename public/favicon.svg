@@ -74,7 +74,7 @@
   <!-- Dome arch -->
   <path d="M 118 302 C 118 110, 394 110, 394 302 Z" class="gold outline"/>
   <!-- Dome base decorative band -->
-  <rect x="106" y="290" width="300" height="28" rx="14" class="gold outline"/>
+  <rect x="106" y="286" width="300" height="28" rx="14" class="gold outline"/>
 
   <!-- ═══════════════════════════════════════════
        CRESCENT & STAR
@@ -93,7 +93,7 @@
   <!-- Crescent moon — tips at (258,40) and (292,98), properly closed -->
   <path d="M 258 40 A 35 35 0 1 0 292 98 A 40 40 0 1 1 258 40 Z" class="gold"/>
   <!-- Five-pointed star — symmetric, center (287,72), outer r=10, inner r=4 -->
-  <polygon points="287,62 289,69 297,69 291,73 293,80 287,76 281,80 283,73 278,69 285,69" class="gold"/>
+  <polygon transform="translate(-18, 0)" points="287,62 289,69 297,69 291,73 293,80 287,76 281,80 283,73 278,69 285,69" class="gold"/>
 
   <!-- ═══════════════════════════════════════════
        LEFT MINARET

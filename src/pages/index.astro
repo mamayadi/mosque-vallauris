@@ -1,9 +1,11 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { Icon } from 'astro-icon/components';
+import logoSvg from '../assets/logo.svg?raw';
+import mosqueSvg from '../assets/mosque-illustration.svg?raw';
 
 const mawaqitUrl    = 'https://mawaqit.net/fr/m/mosquee-de-vallauris-vallauris-06220-france';
-const helloAssoUrl  = 'https://www.helloasso.com/associations/association-culturelle-de-vallauris';
+const helloAssoUrl  = 'https://www.helloasso.com/associations/association-culturelle-de-vallauris/formulaires/1';
 const googleMapsUrl = 'https://maps.app.goo.gl/iCYVHbP1aZfZmQH88';
 const address       = '11bis Bd des Deux Vallons, 06220 Vallauris';
 
@@ -31,16 +33,7 @@ const services = [
     <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
       <!-- Logo -->
       <a href="#accueil" class="flex items-center gap-2 text-beige-100 hover:text-gold transition-colors">
-        <svg viewBox="0 0 48 32" fill="currentColor" class="w-10 h-7">
-          <rect x="4" y="19" width="40" height="12" rx="1"/>
-          <path d="M8,19 Q24,5 40,19Z"/>
-          <path d="M0,19 Q8,13 16,19Z"/>
-          <path d="M32,19 Q40,13 48,19Z"/>
-          <rect x="1"  y="10" width="6" height="21" rx="1"/>
-          <polygon points="1,10 4,3 7,10"/>
-          <rect x="41" y="10" width="6" height="21" rx="1"/>
-          <polygon points="41,10 44,3 47,10"/>
-        </svg>
+        <Fragment set:html={logoSvg} />
         <span class="font-amiri text-sm font-bold hidden sm:inline leading-tight">
           Grande Mosquée<br/><span class="text-gold">de Vallauris</span>
         </span>
@@ -63,7 +56,7 @@ const services = [
           </a>
         </li>
         <li>
-          <a href="#don"
+          <a href={helloAssoUrl} target="_blank" rel="noopener"
              class="flex items-center gap-1.5 px-3 py-2 rounded-full bg-gold text-green-800 hover:bg-gold-light transition-all font-bold">
             <Icon name="ph:hand-heart" class="w-4 h-4" />
             Don
@@ -85,34 +78,7 @@ const services = [
 
     <!-- Mosque SVG illustration -->
     <div class="relative z-10 w-full max-w-lg mx-auto px-4 mb-6 text-beige-100 opacity-90">
-      <svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg"
-           fill="currentColor" class="w-full drop-shadow-2xl">
-        <rect x="8"   y="65"  width="22" height="150" rx="2"/>
-        <path d="M8,65 L19,28 L30,65Z"/>
-        <rect x="12"  y="60"  width="14" height="8" rx="1"/>
-        <circle cx="19" cy="24" r="5"/>
-        <rect x="78"  y="105" width="18" height="110" rx="2"/>
-        <path d="M78,105 L87,78 L96,105Z"/>
-        <circle cx="87" cy="74" r="4"/>
-        <rect x="304" y="105" width="18" height="110" rx="2"/>
-        <path d="M304,105 L313,78 L322,105Z"/>
-        <circle cx="313" cy="74" r="4"/>
-        <rect x="370" y="65"  width="22" height="150" rx="2"/>
-        <path d="M370,65 L381,28 L392,65Z"/>
-        <rect x="374" y="60"  width="14" height="8" rx="1"/>
-        <circle cx="381" cy="24" r="5"/>
-        <rect x="60"  y="148" width="280" height="67" rx="3"/>
-        <path d="M60,148 Q115,112 170,148Z"/>
-        <path d="M120,148 Q200,68 280,148Z"/>
-        <path d="M230,148 Q285,112 340,148Z"/>
-        <path d="M178,215 L178,178 Q200,162 222,178 L222,215Z" fill="rgba(10,30,18,0.45)"/>
-        <path d="M100,178 Q120,162 140,178 L140,200 L100,200Z"  fill="rgba(10,30,18,0.35)"/>
-        <path d="M260,178 Q280,162 300,178 L300,200 L260,200Z"  fill="rgba(10,30,18,0.35)"/>
-        <path d="M196,88 C189,77 192,64 201,61 C193,65 190,77 196,88Z" fill="#c9a84c"/>
-        <polygon
-          points="208,57 209.5,61.5 214,61.5 210.5,64 211.8,68.5 208,66 204.2,68.5 205.5,64 202,61.5 206.5,61.5"
-          fill="#c9a84c" transform="scale(0.65) translate(112,26)"/>
-      </svg>
+      <Fragment set:html={mosqueSvg} />
     </div>
 
     <!-- Title -->
@@ -128,13 +94,13 @@ const services = [
         Bienvenue dans votre mosquée — un lieu de prière, de paix et de fraternité
       </p>
       <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
-        <a href="#prieres" class="btn-gold">
-          <Icon name="ph:mosque" class="w-6 h-6" />
-          Horaires des prières
-        </a>
-        <a href="#don" class="btn-outline">
+        <a href={helloAssoUrl} target="_blank" rel="noopener" class="btn-gold">
           <Icon name="ph:hand-heart" class="w-5 h-5" />
           Faire un don
+        </a>
+        <a href="#prieres" class="btn-outline">
+          <Icon name="ph:mosque" class="w-6 h-6" />
+          Horaires des prières
         </a>
       </div>
     </div>

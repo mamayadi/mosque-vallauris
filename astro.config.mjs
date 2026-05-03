@@ -1,6 +1,6 @@
 import { defineConfig } from 'astro/config';
-import tailwindcss from '@tailwindcss/vite';
 import icon from 'astro-icon';
+import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
   integrations: [icon()],
@@ -8,6 +8,6 @@ export default defineConfig({
     plugins: [tailwindcss()],
   },
   output: 'static',
-  site: 'https://mamayadi.github.io',
-  base: '/mosque-vallauris',
+  site: 'https://mosquee-vallauris.fr',
+  base: '/',
 });
