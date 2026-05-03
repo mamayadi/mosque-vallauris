@@ -1,9 +1,10 @@
 import { defineConfig } from 'astro/config';
 import icon from 'astro-icon';
 import tailwindcss from '@tailwindcss/vite';
+import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  integrations: [icon()],
+  integrations: [icon(), sitemap()],
   vite: {
     plugins: [tailwindcss()],
   },
