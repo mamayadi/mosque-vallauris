@@ -15,5 +15,7 @@ const svgSource = Buffer.from(
 
 await sharp(svgSource).resize(32,  32).png().toFile(resolve(publicDir, 'favicon-32.png'));
 await sharp(svgSource).resize(180, 180).png().toFile(resolve(publicDir, 'apple-touch-icon.png'));
+await sharp(svgSource).resize(192, 192).png().toFile(resolve(publicDir, 'icon-192.png'));
+await sharp(svgSource).resize(512, 512).png().toFile(resolve(publicDir, 'icon-512.png'));
 
-console.log('favicons generated: favicon-32.png, apple-touch-icon.png');
+console.log('favicons generated: favicon-32.png, apple-touch-icon.png, icon-192.png, icon-512.png');

@@ -1,0 +1,16 @@
+{
+  "name": "Grande Mosquée de Vallauris",
+  "short_name": "Mosquée Vallauris",
+  "description": "Site officiel de la Grande Mosquée de Vallauris — Horaires de prières, localisation et dons.",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#1a3a28",
+  "theme_color": "#1a3a28",
+  "lang": "fr",
+  "icons": [
+    { "src": "/favicon-32.png",       "sizes": "32x32",   "type": "image/png" },
+    { "src": "/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" },
+    { "src": "/icon-192.png",         "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "/icon-512.png",         "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}

@@ -68,21 +68,74 @@ const faqItems = [
   },
 ];
 
-const faqSchema = {
+const siteUrl = 'https://mosquee-vallauris.fr';
+
+const additionalSchemas = {
   '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faqItems.map(({ q, a }) => ({
-    '@type': 'Question',
-    name: q,
-    acceptedAnswer: { '@type': 'Answer', text: a },
-  })),
+  '@graph': [
+    // ── FAQPage ──────────────────────────────────────────────────────────
+    {
+      '@type': 'FAQPage',
+      '@id': `${siteUrl}/#faq`,
+      mainEntity: faqItems.map(({ q, a }) => ({
+        '@type': 'Question',
+        name: q,
+        acceptedAnswer: { '@type': 'Answer', text: a },
+      })),
+    },
+    // ── WebPage + sections ────────────────────────────────────────────────
+    {
+      '@type': 'WebPage',
+      '@id': `${siteUrl}/#webpage`,
+      url: siteUrl,
+      name: 'Grande Mosquée de Vallauris',
+      potentialAction: {
+        '@type': 'DonateAction',
+        name: 'Faire un don pour la mosquée de Vallauris',
+        url: helloAssoUrl,
+        description: `Campagne de collecte — objectif ${fmt(campaign.objectif)} €, ${fmt(campaign.collecte)} € réunis (${campaign.pct}%).`,
+      },
+      hasPart: [
+        {
+          '@type': 'WebPageElement',
+          name: 'Campagne de collecte de dons — Achat de la mosquée',
+          url: `${siteUrl}/#collecte`,
+          description: `Campagne pour réunir ${fmt(campaign.objectif)} € : achat du rez-de-chaussée (${fmt(campaign.achatRdC)} €) et travaux d'aménagement (${fmt(campaign.travaux)} €). ${fmt(campaign.collecte)} € déjà collectés.`,
+        },
+        {
+          '@type': 'WebPageElement',
+          name: 'Notre histoire — Mosquée de Vallauris',
+          url: `${siteUrl}/#histoire`,
+          description: "Histoire de la mosquée de Vallauris depuis ses débuts au début des années 2000 jusqu'au projet d'achat du local.",
+        },
+        {
+          '@type': 'WebPageElement',
+          name: 'Horaires des prières — Fajr, Dhuhr, Asr, Maghrib, Isha',
+          url: `${siteUrl}/#prieres`,
+          description: 'Horaires des cinq prières quotidiennes (الفجر، الظهر، العصر، المغرب، العشاء) à la mosquée de Vallauris, en temps réel via Mawaqit.',
+        },
+        {
+          '@type': 'WebPageElement',
+          name: 'Localisation — Comment nous trouver',
+          url: `${siteUrl}/#localisation`,
+          description: `${address} — Vallauris, Alpes-Maritimes (06220). Vue satellite.`,
+        },
+        {
+          '@type': 'WebPageElement',
+          name: 'Questions fréquentes — Mosquée de Vallauris',
+          url: `${siteUrl}/#faq`,
+          description: 'Réponses aux questions fréquentes : horaires, adresse, espace femmes, cours, dons, Ramadan.',
+        },
+      ],
+    },
+  ],
 };
 ---
 
 <Layout
   title="Grande Mosquée de Vallauris — Aidez-nous à bâtir notre mosquée | 06220"
   description="Soutenez la Grande Mosquée de Vallauris (06220) — campagne de collecte pour l'achat du local. Horaires de prières, cours d'arabe, espace femmes. Association Culturelle de Vallauris."
-  additionalSchema={faqSchema}
+  additionalSchema={additionalSchemas}
 >
   <!-- ══════════════════════════════════════════
        NAVIGATION
